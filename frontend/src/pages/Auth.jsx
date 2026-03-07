@@ -32,8 +32,6 @@ if (!res.ok) {
 
 localStorage.setItem("token", data.token);
 
-console.log("TOKEN:", data.token);
-
 navigate("/dashboard", { replace: true });
 
 } catch (err) {
