@@ -1,0 +1,212 @@
+/* =========================
+   PAGE BASE
+========================= */
+
+.grocery-page{
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.grocery-hero{
+  position:relative;
+  height:420px;
+
+  background:url("/hero/grocery-hero.webp") center/cover no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.grocery-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+}
+
+.grocery-hero-overlay{
+  position:relative;
+  max-width:700px;
+}
+
+.grocery-hero-overlay h1{
+  font-family:"Playfair Display",serif;
+  font-size:42px;
+  font-weight:500;
+  margin-bottom:12px;
+}
+
+.grocery-hero-overlay p{
+  font-size:14px;
+  color:#cfcfcf;
+  line-height:1.6;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.grocery-content{
+  padding:70px 10%;
+}
+
+.grocery-section{
+  max-width:900px;
+  margin:auto;
+}
+
+.grocery-section-title{
+  font-family:"Playfair Display",serif;
+  font-size:20px;
+  font-weight:500;
+  margin-bottom:30px;
+}
+
+
+/* =========================
+   GROCERY ITEM
+========================= */
+
+.grocery-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+
+  padding:14px 18px;
+  margin-bottom:12px;
+
+  border:1px solid #1a1a1a;
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  cursor:pointer;
+  transition:0.25s ease;
+}
+
+.grocery-item:hover{
+  border-color:#333;
+  background:#111;
+}
+
+
+/* Checked */
+
+.grocery-item.checked{
+  opacity:0.55;
+}
+
+.grocery-item.checked .grocery-item-name{
+  text-decoration:line-through;
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.grocery-item-img{
+  width:48px;
+  height:48px;
+  object-fit:cover;
+
+  border-radius:6px;
+}
+
+
+/* =========================
+   NAME
+========================= */
+
+.grocery-item-name{
+  flex:1;
+
+  font-size:15px;
+  letter-spacing:0.2px;
+}
+
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.grocery-item input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  cursor:pointer;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.grocery-empty{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.grocery-empty h3{
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+  margin-bottom:10px;
+  font-weight: 500;
+}
+
+.grocery-empty p{
+  color:#aaa;
+  margin-bottom:25px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+
+.grocery-empty-btn{
+  padding:12px 28px;
+
+  border:1px solid #fff;
+  background:transparent;
+
+  color:#fff;
+  font-size:12px;
+  letter-spacing:1px;
+
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.grocery-empty-btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .grocery-content{
+    padding:60px 20px;
+  }
+
+  .grocery-item{
+    gap:12px;
+  }
+
+  .grocery-item-img{
+    width:40px;
+    height:40px;
+  }
+
+}

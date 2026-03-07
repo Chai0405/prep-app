@@ -1,0 +1,288 @@
+/* =========================
+   NAVBAR CONTAINER
+========================= */
+
+.dashboard-navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 40px;
+
+  background: rgba(0, 0, 0, 0.35);   /* transparent */
+  backdrop-filter: blur(10px);       /* glass blur */
+  -webkit-backdrop-filter: blur(10px);
+
+  z-index: 1000;
+}
+
+
+/* =========================
+   LEFT
+========================= */
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  width: 50px;
+  cursor: pointer;
+}
+
+
+/* =========================
+   CENTER LINKS
+========================= */
+
+.nav-center {
+  display: flex;
+  gap: 40px;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.nav-center a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.75;
+}
+
+.nav-center a:hover {
+  opacity: 1;
+}
+
+
+/* =========================
+   RIGHT
+========================= */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+/* =========================
+   PROFILE CIRCLE
+========================= */
+
+.profile-circle {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.profile-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-text {
+  font-size: 13px;
+  color: #cfcfcf;
+  cursor: pointer;
+}
+
+.logout-text:hover {
+  color: white;
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-navbar {
+    padding: 0 20px;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .nav-logo {
+    width: 42px;
+  }
+
+  .profile-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logout-text {
+    font-size: 12px;
+  }
+
+}
+
+/* ================= LOGOUT MODAL ================= */
+
+.logout-modal-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  z-index:999;
+}
+
+
+/* Modal box */
+
+.logout-modal{
+  background:rgba(15,15,15,0.92);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+
+  padding:34px 42px;
+  width:360px;
+
+  text-align:center;
+
+  box-shadow:0 20px 40px rgba(0,0,0,0.45);
+}
+
+
+/* Text */
+
+.logout-modal p{
+  font-size:17px;
+  font-weight:500;
+  margin-bottom:28px;
+  letter-spacing:0.3px;
+}
+
+
+/* Button row */
+
+.logout-actions{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+}
+
+
+/* Cancel button (outline) */
+
+.cancel-btn{
+  padding:10px 26px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:transparent;
+  color:#fff;
+
+  font-size:14px;
+  cursor:pointer;
+
+  transition:all 0.25s ease;
+}
+
+.cancel-btn:hover{
+  background:rgba(255,255,255,0.08);
+}
+
+
+/* Logout button (primary) */
+
+.confirm-btn{
+  padding:10px 26px;
+  border:none;
+  background:#fff;
+  color:#000;
+
+  font-size:14px;
+  cursor:pointer;
+
+  transition:all 0.25s ease;
+}
+
+.confirm-btn:hover{
+  background:#e6e6e6;
+}
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.hamburger{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+position:fixed;
+top:70px;
+left:0;
+width:100%;
+
+background:#000;
+
+display:flex;
+flex-direction:column;
+gap:18px;
+
+padding:24px;
+
+z-index:999;
+}
+
+.mobile-menu a{
+color:#fff;
+font-size:15px;
+text-decoration:none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+.nav-center{
+display:none;
+}
+
+.hamburger{
+display:block;
+}
+
+}

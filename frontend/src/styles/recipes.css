@@ -1,0 +1,282 @@
+/* =========================
+   RECIPES PAGE BASE
+========================= */
+
+.recipes-page {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.recipes-hero {
+  height: 420px;
+  background: url("/hero/recipes-hero.jpg") center / cover no-repeat;
+  position: relative;
+  padding-top: 70px;
+}
+
+.recipes-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.4),
+    rgba(0,0,0,0.8)
+  );
+}
+
+.recipes-hero-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipes-hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.recipes-hero p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  text-align: center;
+}
+
+
+/* =========================
+   FILTER CONTROLS
+========================= */
+
+.recipes-controls {
+  padding: 40px 80px 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.filter-label {
+  font-size: 14px;
+  letter-spacing: 1.6px;
+  color: rgba(255,255,255,0.55);
+  margin-right: 10px;
+  font-family: Inter;
+}
+
+
+/* FILTER BUTTON */
+
+.recipes-controls button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #ffffff;
+
+  padding: 8px 18px;
+  font-size: 13px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.recipes-controls button:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.recipes-controls .active-filter {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+
+/* =========================
+   RECIPES GRID
+========================= */
+
+.recipes-grid-medium {
+  padding: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+
+/* =========================
+   RECIPE CARD
+========================= */
+
+.recipe-card-medium {
+  position: relative;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  transition: transform 0.25s ease;
+}
+
+.recipe-card-medium:hover {
+  transform: translateY(-4px);
+}
+
+.recipe-card-medium img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================
+   CARD INFO
+========================= */
+
+.recipe-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 18px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.15)
+  );
+
+  z-index: 2;
+}
+
+.recipe-card-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.recipe-card-info p {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+
+/* =========================
+   HOVER OVERLAY
+========================= */
+
+.recipe-card-hover {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0,0,0,0.65);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  z-index: 3;
+}
+
+.recipe-card-hover span {
+  background: #fff;
+  color: #000;
+
+  padding: 12px 28px;
+
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.recipe-card-medium:hover .recipe-card-hover {
+  opacity: 1;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .recipes-grid-medium {
+    padding: 60px 40px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .recipes-hero-overlay {
+    padding: 0 30px;
+  }
+
+  .recipes-hero h1 {
+    font-size: 34px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .recipes-grid-medium {
+    grid-template-columns: 1fr;
+    padding: 50px 20px;
+  }
+
+  .recipes-controls {
+    padding: 30px 20px;
+  }
+
+}
+
+/* =========================
+   MEAL FILTER MOBILE FIX
+========================= */
+
+@media (max-width:768px){
+
+  .filter-row{
+    display:flex;
+    gap:10px;
+
+    overflow-x:auto;
+    padding-bottom:6px;
+
+    scrollbar-width:none;
+  }
+
+  .filter-row::-webkit-scrollbar{
+    display:none;
+  }
+
+  .filter-row button{
+    white-space:nowrap;
+    min-width:100px;
+    font-size:12px;
+    padding:8px 14px;
+  }
+
+}

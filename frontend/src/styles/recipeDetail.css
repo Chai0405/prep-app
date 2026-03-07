@@ -1,0 +1,258 @@
+/* =========================
+   PAGE BASE
+========================= */
+
+.recipe-detail-page{
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+}
+
+
+/* =========================
+   SPLIT LAYOUT
+========================= */
+
+.recipe-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 70px);
+  margin-top:70px;
+}
+
+
+/* =========================
+   LEFT SIDE IMAGE
+========================= */
+
+.recipe-left{
+  position:relative;
+  overflow:hidden;
+}
+
+.recipe-left img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(0.97);
+}
+
+
+/* Back button */
+
+.recipe-left span{
+  position:absolute;
+  top:30px;
+  left:30px;
+
+  background:rgba(0,0,0,0.6);
+  padding:8px 14px;
+
+  font-size:13px;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.recipe-left span:hover{
+  background:rgba(0,0,0,0.85);
+}
+
+
+/* =========================
+   RIGHT CONTENT
+========================= */
+
+.recipe-right{
+  overflow-y:auto;
+  padding:60px 70px;
+}
+
+.recipe-inner{
+  max-width:520px;
+}
+
+
+/* =========================
+   TAGS
+========================= */
+
+.recipe-tags{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.recipe-tags span{
+  font-size:11px;
+  border:1px solid #444;
+  padding:4px 10px;
+  border-radius:20px;
+  color:#aaa;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.recipe-inner h1{
+  font-family:"Playfair Display",serif;
+  font-size:38px;
+  margin-bottom:12px;
+  font-weight:500;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.recipe-desc{
+  font-size:15px;
+  line-height:1.7;
+  color:#bbb;
+  margin-bottom:30px;
+}
+
+
+/* =========================
+   META INFO
+========================= */
+
+.recipe-meta{
+  display:flex;
+  gap:40px;
+  margin-bottom:40px;
+}
+
+.recipe-meta span{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#777;
+}
+
+.recipe-meta p{
+  font-size:16px;
+  margin-top:4px;
+}
+
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.recipe-section{
+  margin-bottom:40px;
+}
+
+.recipe-section h2{
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  margin-bottom:14px;
+  font-weight:500;
+}
+
+
+/* =========================
+   INGREDIENTS
+========================= */
+
+.recipe-ingredients{
+  list-style:none;
+  padding:0;
+}
+
+.recipe-ingredients li{
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:10px;
+  padding-left:18px;
+  position:relative;
+}
+
+.recipe-ingredients li::before{
+  content:"•";
+  position:absolute;
+  left:0;
+  color:#777;
+}
+
+
+/* =========================
+   METHOD
+========================= */
+
+.recipe-method{
+  padding-left:18px;
+}
+
+.recipe-method li{
+  margin-bottom:14px;
+  font-size:14px;
+  line-height:1.6;
+  color:#ccc;
+}
+
+
+/* =========================
+   PLAN BUTTON
+========================= */
+
+.plan-btn{
+  margin-top:20px;
+  padding:12px 32px;
+
+  border:1px solid #fff;
+  background:transparent;
+
+  color:#fff;
+  font-size:13px;
+  letter-spacing:1px;
+
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.plan-btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+
+/* =========================
+   LOADING STATE
+========================= */
+
+.loading-state{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:900px){
+
+  .recipe-split{
+    grid-template-columns:1fr;
+  }
+
+  .recipe-left{
+    height:350px;
+  }
+
+  .recipe-right{
+    padding:40px 30px;
+  }
+
+  .recipe-inner h1{
+    font-size:30px;
+  }
+
+}

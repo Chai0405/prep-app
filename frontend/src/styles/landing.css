@@ -1,0 +1,138 @@
+/* ===== LANDING ROOT ===== */
+
+.landing {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.landing-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* 👈 changed */
+  padding-left: 12%;   
+}
+
+.landing-content {
+  max-width: 480px;
+}
+
+.landing-content h1 {
+  font-size: 3.0rem;
+  font-family: "Playfair Display", serif;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.subtitle {
+  color: #cfcfcf;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.desc {
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+.landing-content button {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 14px 36px;
+  letter-spacing: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.landing-content button:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ===== RIGHT SIDE ===== */
+
+.landing-right {
+  flex: 1;
+}
+
+.landing-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== LOGO ===== */
+
+.landing-logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  width: 70px;
+  z-index: 10;
+}
+
+/* =========================
+   LANDING MOBILE FIX
+========================= */
+
+@media (max-width:768px){
+
+  .landing{
+    flex-direction:column;
+    height:auto;
+  }
+
+  /* content section */
+  .landing-left{
+    padding:80px 24px 40px;
+    justify-content:center;
+  }
+
+  .landing-content{
+    max-width:100%;
+  }
+
+  .landing-content h1{
+    font-size:2.3rem;
+    line-height:1.2;
+  }
+
+  .subtitle{
+    font-size:13px;
+  }
+
+  .desc{
+    font-size:14px;
+  }
+
+  /* image section */
+  .landing-right{
+    height:260px;
+  }
+
+  .landing-right img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  /* logo smaller */
+  .landing-logo{
+    width:48px;
+    top:18px;
+    left:18px;
+  }
+
+}

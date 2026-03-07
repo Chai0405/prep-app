@@ -1,0 +1,20 @@
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-page{
+  padding-top:70px;
+  min-height:100vh;
+}
+
+/* ABOUT DESIGN IMAGE */
+
+.about-design{
+  width:100%;
+}
+
+.about-design img{
+  width:100%;
+  height:auto;
+  display:block;
+}
