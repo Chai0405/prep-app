@@ -1,5 +1,6 @@
 // import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import MealSelectorModal from "../components/MealSelectorModal";
 import "../styles/planner.css";
 
@@ -38,6 +39,7 @@ const [activeMeal,setActiveMeal] = useState("Breakfast");
 const [showMealModal,setShowMealModal] = useState(false);
 
 const weekStart = getWeekStart();
+const location = useLocation();
 
 /* ================= FETCH PLANNER ================= */
 
@@ -70,7 +72,7 @@ setPlanner(emptyPlanner);
 
 });
 
-},[weekStart]);
+},[weekStart, location.pathname]);
 
 /* ================= CURRENT MEALS ================= */
 

@@ -94,7 +94,9 @@ export default function Navbar() {
             {user?.avatar ? (
               <img src={user.avatar} alt="avatar" />
             ) : (
-              <span>{user?.name?.slice(0,2).toUpperCase()}</span>
+              <span>
+  {user?.name ? user.name.slice(0, 2).toUpperCase() : ""}
+</span>
             )}
           </div>
 
