@@ -71,10 +71,14 @@ export default function AddToPlannerModal({ recipe, onClose }) {
       }
     };
 
-    await fetch(`${import.meta.env.VITE_API_URL}/api/planner`,{
-      method:"POST",
-      credentials:"include",
-      headers:{ "Content-Type":"application/json" },
+    const token = localStorage.getItem("token");
+
+await fetch(`${import.meta.env.VITE_API_URL}/api/planner`,{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+Authorization:`Bearer ${token}`
+},
       body:JSON.stringify({
         weekStart,
         meals:updatedMeals
