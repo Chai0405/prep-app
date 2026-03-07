@@ -10,8 +10,6 @@ export default function Profile() {
   const [showPassword, setShowPassword] = useState(false);
   const [toast,setToast] = useState("");
 
-  // const navigate = useNavigate();
-
   const [user, setUser] = useState(null);
 
   const [passwordData, setPasswordData] = useState({
@@ -37,10 +35,14 @@ export default function Profile() {
 
       try {
 
+        const token = localStorage.getItem("token");
+
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/avatar`,{
           method:"PUT",
-          credentials:"include",
-          headers:{ "Content-Type":"application/json"},
+          headers:{
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+          },
           body: JSON.stringify({ avatar: avatarBase64 })
         });
 
@@ -72,10 +74,14 @@ export default function Profile() {
 
     try {
 
+      const token = localStorage.getItem("token");
+
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password`,{
         method:"PUT",
-        credentials:"include",
-        headers:{ "Content-Type":"application/json"},
+        headers:{
+          "Content-Type":"application/json",
+          Authorization:`Bearer ${token}`
+        },
         body: JSON.stringify({
           current: passwordData.current,
           newPassword: passwordData.newPassword
@@ -109,10 +115,14 @@ export default function Profile() {
 
     try {
 
+      const token = localStorage.getItem("token");
+
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`,{
         method:"PUT",
-        credentials:"include",
-        headers:{ "Content-Type":"application/json"},
+        headers:{
+          "Content-Type":"application/json",
+          Authorization:`Bearer ${token}`
+        },
         body: JSON.stringify(user)
       });
 
@@ -133,8 +143,12 @@ export default function Profile() {
 
       try {
 
+        const token = localStorage.getItem("token");
+
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
-          credentials:"include"
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
         });
 
         if(!res.ok) throw new Error("Not authenticated");
@@ -156,7 +170,6 @@ export default function Profile() {
 
     <div className="profile-page">
 
-      {/* HERO */}
       <section className="profile-hero">
         <div className="profile-hero-overlay">
           <h1>Account Settings</h1>
@@ -170,7 +183,6 @@ export default function Profile() {
 
           <h2>Account Information</h2>
 
-          {/* AVATAR */}
           <div className="avatar-row">
 
             <div className="avatar-preview">
@@ -190,9 +202,7 @@ export default function Profile() {
 
           </div>
 
-          {/* NAME */}
           <div className="profile-row">
-
             <span>Name</span>
 
             {editMode ? (
@@ -207,9 +217,7 @@ export default function Profile() {
 
           </div>
 
-          {/* EMAIL */}
           <div className="profile-row">
-
             <span>Email</span>
 
             {editMode ? (
@@ -224,13 +232,11 @@ export default function Profile() {
 
           </div>
 
-          {/* PASSWORD */}
           <div className="profile-row">
             <span>Password</span>
             <p>••••••••</p>
           </div>
 
-          {/* BUTTONS */}
           <div className="profile-actions">
 
             {editMode ? (
@@ -269,7 +275,6 @@ export default function Profile() {
 
         </div>
 
-        {/* DANGER */}
         <div className="profile-section-card danger">
           <h2>Danger Zone</h2>
           <button className="danger-btn">Delete Account</button>
@@ -277,7 +282,6 @@ export default function Profile() {
 
       </section>
 
-      {/* PASSWORD MODAL */}
       {showPassword && (
 
         <div className="password-modal">
