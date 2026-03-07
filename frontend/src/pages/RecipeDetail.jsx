@@ -1,4 +1,4 @@
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddToPlannerModal from "../components/AddToPlannerModal";
 import "../styles/recipeDetail.css"
@@ -9,22 +9,22 @@ const { id } = useParams();
 const navigate = useNavigate();
 
 const [recipe,setRecipe] = useState(null);
-const [user,setUser] = useState(null);
+// const [user,setUser] = useState(null);
 const [showPlannerModal,setShowPlannerModal] = useState(false);
 const [showLogoutConfirm,setShowLogoutConfirm] = useState(false);
 
 /* ================= FETCH USER ================= */
 
-useEffect(()=>{
+// useEffect(()=>{
 
-fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
-credentials:"include"
-})
-.then(res=>res.json())
-.then(setUser)
-.catch(()=>setUser(null));
+// fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
+// credentials:"include"
+// })
+// .then(res=>res.json())
+// .then(setUser)
+// .catch(()=>setUser(null));
 
-},[]);
+// },[]);
 
 
 /* ================= FETCH RECIPE ================= */
@@ -60,48 +60,6 @@ navigate("/auth");
 return(
 
 <div className="recipe-detail-page">
-
-
-================= NAVBAR =================
-
-<div className="dashboard-navbar">
-
-<div className="nav-left">
-<img src="/logo.png" className="nav-logo" alt="Logo"/>
-</div>
-
-<div className="nav-center">
-<NavLink to="/dashboard">Home</NavLink>
-<NavLink to="/planner">Planner</NavLink>
-<NavLink to="/recipes">Recipes</NavLink>
-<NavLink to="/grocery">Grocery</NavLink>
-<NavLink to="/blogs">Blogs</NavLink>
-<NavLink to="/about">About us</NavLink>
-</div>
-
-<div className="nav-right">
-
-  <div
-    className="profile-circle"
-    onClick={()=>navigate("/profile")}
-  >
-    {user?.avatar ? (
-      <img src={user.avatar} alt="avatar"/>
-    ):(
-      user?.name?.slice(0,2).toUpperCase() || "?"
-    )}
-  </div>
-
-  <span
-    className="logout-text"
-    onClick={()=>setShowLogoutConfirm(true)}
-  >
-    Sign out
-  </span>
-
-</div>
-
-</div>
 
 
 {/* ================= SPLIT LAYOUT ================= */}
