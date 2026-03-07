@@ -60,9 +60,14 @@ export default function AddToPlannerModal({ recipe, onClose }) {
       [dayMap[day]]:{
         ...meals[dayMap[day]],
         [meal.toLowerCase()]:[
-          ...(meals?.[dayMap[day]]?.[meal.toLowerCase()] || []),
-          recipe._id
-        ]
+  ...(meals?.[dayMap[day]]?.[meal.toLowerCase()] || []),
+  {
+    _id: recipe._id,
+    title: recipe.title,
+    image: recipe.image,
+    calories: recipe.calories
+  }
+]
       }
     };
 
