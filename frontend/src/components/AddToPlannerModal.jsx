@@ -53,23 +53,34 @@ export default function AddToPlannerModal({ recipe, onClose }) {
 
     const plannerData = await plannerRes.json();
 
-    const meals = plannerData?.meals || {};
+    console.log("Planner API response:", plannerData);
 
-    const updatedMeals = {
-      ...meals,
-      [dayMap[day]]:{
-        ...meals[dayMap[day]],
-        [meal.toLowerCase()]:[
-  ...(meals?.[dayMap[day]]?.[meal.toLowerCase()] || []),
-  {
-    _id: recipe._id,
-    title: recipe.title,
-    image: recipe.image,
-    calories: recipe.calories
-  }
-]
-      }
-    };
+    const meals = plannerData?.meals || {
+  monday:{},
+  tuesday:{},
+  wednesday:{},
+  thursday:{},
+  friday:{},
+  saturday:{},
+  sunday:{}
+};
+
+    const updatedMeals = JSON.parse(JSON.stringify(meals));
+
+if(!updatedMeals[dayMap[day]]){
+  updatedMeals[dayMap[day]] = {};
+}
+
+if(!updatedMeals[dayMap[day]][meal.toLowerCase()]){
+  updatedMeals[dayMap[day]][meal.toLowerCase()] = [];
+}
+
+updatedMeals[dayMap[day]][meal.toLowerCase()].push({
+  _id: recipe._id,
+  title: recipe.title,
+  image: recipe.image,
+  calories: recipe.calories
+});
 
     const token = localStorage.getItem("token");
 

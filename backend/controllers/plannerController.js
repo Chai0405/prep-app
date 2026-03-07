@@ -23,9 +23,9 @@ cleanedMeals[day] = {};
 Object.entries(mealTypes || {}).forEach(([mealType,ids])=>{
 
 cleanedMeals[day][mealType] =
-(ids || []).filter(id =>
-mongoose.Types.ObjectId.isValid(id)
-);
+(ids || [])
+.map(item => typeof item === "object" ? item._id : item)
+.filter(id => mongoose.Types.ObjectId.isValid(id));
 
 });
 
