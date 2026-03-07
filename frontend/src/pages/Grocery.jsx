@@ -172,8 +172,12 @@ return `/groceries/${key}.jpg`;
 
 useEffect(()=>{
 
+const token = localStorage.getItem("token");
+
 fetch(`${import.meta.env.VITE_API_URL}/api/grocery`,{
-credentials:"include"
+  headers:{
+    Authorization:`Bearer ${token}`
+  }
 })
 .then(res=>res.json())
 .then(data=>{
@@ -187,19 +191,23 @@ setItems(groceryItems);
 
 /* ================= TOGGLE ================= */
 
-const toggleItem = (index)=>{
+const toggleItem = (index) => {
 
-const updated = [...items];
-updated[index].checked = !updated[index].checked;
+  const updated = [...items];
+  updated[index].checked = !updated[index].checked;
 
-setItems(updated);
+  setItems(updated);
 
-fetch(`${import.meta.env.VITE_API_URL}/api/grocery`,{
-method:"POST",
-headers:{ "Content-Type":"application/json"},
-credentials:"include",
-body:JSON.stringify({ items:updated })
-});
+  const token = localStorage.getItem("token");
+
+  fetch(`${import.meta.env.VITE_API_URL}/api/grocery`,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      Authorization:`Bearer ${token}`
+    },
+    body:JSON.stringify({ items:updated })
+  });
 
 };
 
