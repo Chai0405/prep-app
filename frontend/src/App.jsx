@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
+import PrivacyConsent from "./components/PrivacyConsent";
 
 import Dashboard from "./pages/Dashboard";
 import Recipes from "./pages/Recipes";
@@ -63,6 +64,8 @@ export default function App() {
         </Route>
 
       </Routes>
+
+      <PrivacyConsent />
 
     </BrowserRouter>
   );
