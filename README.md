@@ -7,17 +7,15 @@ and grocery management into a single interface.
 Live Application: https://prep-app-neon.vercel.app
 
 📸 Screenshots:
-Home Page:
-![Home](./screenshots/home.png)
+<p align="center">
+  <img src="./screenshots/home.png" width="45%" />
+  <img src="./screenshots/planner.png" width="45%" />
+</p>
 
-Meal Planner
-![Planner](./screenshots/planner.png)
-
-Recipes
-![Recipes](./screenshots/recipes.png)
-
-Grocery List
-![Grocery](./screenshots/grocery.png)
+<p align="center">
+  <img src="./screenshots/recipes.png" width="45%" />
+  <img src="./screenshots/grocery.png" width="45%" />
+</p>
 
 ✨ Features
 Browse and explore recipes
