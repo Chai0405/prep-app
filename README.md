@@ -17,41 +17,45 @@ Live Application: https://prep-app-neon.vercel.app
   <img src="./screenshots/grocery.png" width="45%" />
 </p>
 
-✨ Features
-Browse and explore recipes
-Plan meals for the entire week
-Automatically generate grocery lists based on selected meals
-Secure user authentication using JWT
-Email integration for notifications
-Privacy consent popup for cookies and local storage
-Responsive modern UI with dark theme
-
 🧰 Tech Stack
 Frontend
+
 React
+
 React Router
+
 CSS
 
 Backend
+
 Node.js
+
 Express.js
 
 Database
+
 MongoDB
+
 MongoDB Atlas
 
 Authentication
+
 JWT (JSON Web Tokens)
 
 Email Service
+
 Resend API
 
 Deployment
+
 Frontend hosted on Vercel
+
 Backend hosted on Render
+
 Database hosted on MongoDB Atlas
 
 🏗️ Architecture Overview
+
 The application follows a MERN stack architecture:
 
 React Frontend
@@ -62,7 +66,11 @@ REST APIs (Node + Express)
       ▼
 MongoDB Database
 
-Frontend handles UI rendering and routing while the backend provides APIs for authentication, recipes, planners, and grocery lists.
+The React frontend handles UI rendering, routing, and user interactions.
+
+The Node.js + Express backend provides REST APIs for authentication, recipes, planners, and grocery lists.
+
+MongoDB stores users, recipes, meal plans, and grocery list data.
 
 📂 Project Structure
 prep
@@ -82,49 +90,53 @@ prep
 │
 └── README.md
 ⚙️ Getting Started
-
-Clone the repository: git clone https://github.com/yourusername/prep.git
-
+Clone the Repository
+git clone https://github.com/yourusername/prep.git
 📦 Install Dependencies
 Frontend
 cd frontend
 npm install
-
 Backend
 cd backend
 npm install
-
 🔑 Environment Variables
-Create .env inside backend
+
+Create a .env file inside the backend folder.
+
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 RESEND_API_KEY=your_resend_api_key
 CLIENT_URL=http://localhost:5173
 
-Frontend .env
+Create a .env file inside the frontend folder.
+
 VITE_API_URL=http://localhost:5000
-
 ▶️ Run the Application
-
-Start backend
+Start Backend
 cd backend
 npm run dev
-
-Start frontend
+Start Frontend
 cd frontend
 npm run dev
 
-Open: http://localhost:5173
+Open the application in your browser:
 
+http://localhost:5173
 🚀 Future Improvements
+
 Nutritional analysis for recipes
-Drag and drop weekly planner
+
+Drag-and-drop weekly planner
+
 Grocery list export (PDF)
+
 Social login (Google / GitHub)
-Recipe recommendations
+
+Recipe recommendation system
 
 👩‍💻 Author
+
 Chaithra Hegde
 MERN Stack Developer
 
