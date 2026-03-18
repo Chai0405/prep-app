@@ -8,16 +8,16 @@ Live Application: https://prep-app-neon.vercel.app
 
 📸 Screenshots:
 Home Page:
-./screenshots/home.png
+![Home](./screenshots/home.png)
 
 Meal Planner
-./screenshots/planner.png
+![Planner](./screenshots/planner.png)
 
 Recipes
-./screenshots/recipes.png
+![Recipes](./screenshots/recipes.png)
 
 Grocery List
-./screenshots/grocery.png
+![Grocery](./screenshots/grocery.png)
 
 ✨ Features
 Browse and explore recipes
