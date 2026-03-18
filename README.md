@@ -17,41 +17,38 @@ Live Application: https://prep-app-neon.vercel.app
   <img src="./screenshots/grocery.png" width="45%" />
 </p>
 
+✨ Features
+. Browse and explore recipes
+. Plan meals for the entire week
+. Automatically generate grocery lists based on selected meals
+. Secure user authentication using JWT
+. Email integration for notifications
+. Privacy consent popup for cookies and local storage
+. Responsive modern UI with dark theme
+
 🧰 Tech Stack
 Frontend
-
 React
-
 React Router
-
 CSS
 
 Backend
-
 Node.js
-
 Express.js
 
 Database
-
 MongoDB
-
 MongoDB Atlas
 
 Authentication
-
 JWT (JSON Web Tokens)
 
 Email Service
-
 Resend API
 
 Deployment
-
 Frontend hosted on Vercel
-
 Backend hosted on Render
-
 Database hosted on MongoDB Atlas
 
 🏗️ Architecture Overview
@@ -67,9 +64,7 @@ REST APIs (Node + Express)
 MongoDB Database
 
 The React frontend handles UI rendering, routing, and user interactions.
-
 The Node.js + Express backend provides REST APIs for authentication, recipes, planners, and grocery lists.
-
 MongoDB stores users, recipes, meal plans, and grocery list data.
 
 📂 Project Structure
@@ -89,9 +84,10 @@ prep
 │   └── middleware
 │
 └── README.md
+
 ⚙️ Getting Started
-Clone the Repository
-git clone https://github.com/yourusername/prep.git
+Clone the Repository: git clone https://github.com/yourusername/prep.git
+
 📦 Install Dependencies
 Frontend
 cd frontend
@@ -99,10 +95,9 @@ npm install
 Backend
 cd backend
 npm install
+
 🔑 Environment Variables
-
 Create a .env file inside the backend folder.
-
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
@@ -120,28 +115,19 @@ Start Frontend
 cd frontend
 npm run dev
 
-Open the application in your browser:
+Open the application in your browser: http://localhost:5173
 
-http://localhost:5173
 🚀 Future Improvements
-
-Nutritional analysis for recipes
-
-Drag-and-drop weekly planner
-
-Grocery list export (PDF)
-
-Social login (Google / GitHub)
-
-Recipe recommendation system
+. Nutritional analysis for recipes
+. Drag-and-drop weekly planner
+. Grocery list export (PDF)
+. Social login (Google / GitHub)
+. Recipe recommendation system
 
 👩‍💻 Author
-
 Chaithra Hegde
 MERN Stack Developer
-
 GitHub: https://github.com/yourusername
-
 Portfolio: https://chai0405.github.io/portfolio/
 
 📜 License
