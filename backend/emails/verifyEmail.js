@@ -69,5 +69,5 @@ return mailTemplate(
   "Verify Email",
   link
 );
-
+};
 export default verifyEmail;
