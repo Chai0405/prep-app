@@ -160,6 +160,7 @@ export default function Navbar() {
           <NavLink to="/planner" onClick={()=>setMenuOpen(false)}>Planner</NavLink>
           <NavLink to="/recipes" onClick={()=>setMenuOpen(false)}>Recipes</NavLink>
           <NavLink to="/grocery" onClick={()=>setMenuOpen(false)}>Grocery</NavLink>
+          <NavLink to="/pantry"  onClick={() => setMenuOpen(false)}>Pantry</NavLink>
           <NavLink to="/blogs" onClick={()=>setMenuOpen(false)}>Blogs</NavLink>
           <NavLink to="/about" onClick={()=>setMenuOpen(false)}>About us</NavLink>
 
