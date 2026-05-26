@@ -55,6 +55,21 @@
   background: black;
 }
 
+@media (max-width: 768px) {
+
+  .pantry-products {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+
+    gap: 24px;
+  }
+
+  .pantry-card {
+    height: 280px;
+  }
+}
+
 .pantry-card {
   position: relative;
   height: 340px;
