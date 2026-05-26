@@ -628,3 +628,26 @@
 
   border: 1px solid white;
 }
+
+.pantry-filters {
+
+  display: flex;
+
+  gap: 14px;
+
+  overflow-x: auto;
+
+  white-space: nowrap;
+
+  scrollbar-width: none;
+
+  padding-bottom: 10px;
+}
+
+.pantry-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  flex-shrink: 0;
+}
