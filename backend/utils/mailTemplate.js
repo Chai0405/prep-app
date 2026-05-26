@@ -31,28 +31,7 @@ margin-bottom:14px;
 ${title}
 </h2>
 
-<p style="
-color:#b3b3b3;
-font-size:14px;
-line-height:1.6;
-margin-bottom:30px;
-">
 ${message}
-</p>
-
-<a href="${buttonLink}"
-style="
-display:inline-block;
-background:white;
-color:black;
-padding:12px 24px;
-border-radius:4px;
-text-decoration:none;
-font-size:14px;
-font-weight:500;
-">
-${buttonText}
-</a>
 
 <!-- divider -->
 

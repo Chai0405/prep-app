@@ -24,27 +24,7 @@ Just click the button below and you're all set.
 </td>
 </tr>
 
-<tr>
-<td align="center" style="padding:30px 0">
 
-<a href="${link}"
-style="
-display:inline-block;
-padding:16px 42px;
-color:#ffffff;
-text-decoration:none;
-font-weight:500;
-border:1px solid #ffffff;
-background:#000000;
-font-family:Inter, Arial, sans-serif;
-">
-
-Verify Email
-
-</a>
-
-</td>
-</tr>
 
 <tr>
 <td align="center">
@@ -83,8 +63,11 @@ text-align:center;
 
 `;
 
-return mailTemplate("Welcome to Prep", content);
-
-};
+return mailTemplate(
+  "Welcome to Prep",
+  content,
+  "Verify Email",
+  link
+);
 
 export default verifyEmail;
