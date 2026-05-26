@@ -629,7 +629,7 @@
   border: 1px solid white;
 }
 
-.pantry-filters {
+.category-filters {
 
   display: flex;
 
@@ -641,10 +641,12 @@
 
   scrollbar-width: none;
 
+  flex-wrap: nowrap;
+
   padding-bottom: 10px;
 }
 
-.pantry-filters::-webkit-scrollbar {
+.category-filters::-webkit-scrollbar {
   display: none;
 }
 
