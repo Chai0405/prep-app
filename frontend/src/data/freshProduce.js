@@ -665,7 +665,7 @@ const freshProduce = [
   tags: [
     "1kg",
     "Fruits",
-    "Fresh Harvest",
+    "Farm Fresh",
   ],
 
   description:
