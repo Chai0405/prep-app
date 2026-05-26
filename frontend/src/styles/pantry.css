@@ -205,27 +205,29 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
   gap: 28px;
 
   margin-top: 20px;
-  padding-left: 70px;
+
+  padding: 0 20px;
 }
 
-@media (max-width: 1024px) {
-
-  .products-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 
   .products-grid {
     grid-template-columns: 1fr;
 
-    gap: 22px;
+    gap: 24px;
+
+    padding: 0 18px;
+  }
+
+  .product-card img {
+    height: 280px;
   }
 }
 
