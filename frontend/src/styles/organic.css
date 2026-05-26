@@ -1,0 +1,28 @@
+.organic-hero {
+  background:
+    url("/hero/organic-hero.avif")
+    center / cover no-repeat;
+}
+
+.organic-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,48,24,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.organic-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,220,140,0.18);
+}
+
+.organic-grid .product-price {
+  color: #9ce2a8;
+}

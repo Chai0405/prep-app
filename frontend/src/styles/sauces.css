@@ -1,0 +1,28 @@
+.sauces-hero {
+  background:
+    url("/hero/sauces-hero.webp")
+    center / cover no-repeat;
+}
+
+.sauces-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(58,24,18,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.sauces-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,140,120,0.18);
+}
+
+.sauces-grid .product-price {
+  color: #f2a28a;
+}

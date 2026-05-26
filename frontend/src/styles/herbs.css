@@ -1,0 +1,28 @@
+.herbs-hero {
+  background:
+    url("/hero/herbs-hero.jpg")
+    center / cover no-repeat;
+}
+
+.herbs-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,52,28,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.herbs-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,255,160,0.18);
+}
+
+.herbs-grid .product-price {
+  color: #9ef2b5;
+}

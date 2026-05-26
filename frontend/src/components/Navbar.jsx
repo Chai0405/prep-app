@@ -1,5 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ShoppingCart  } from "lucide-react";
+import CartSidebar from "../components/CartSidebar";
 
 export default function Navbar() {
 
@@ -8,6 +10,19 @@ export default function Navbar() {
   const [user, setUser] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [menuOpen,setMenuOpen] = useState(false);   // NEW
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+
+  const cartItems =
+    JSON.parse(
+      localStorage.getItem("cartItems")
+    ) || [];
+
+  setCartCount(cartItems.length);
+
+}, []);
 
   useEffect(() => {
 
@@ -71,6 +86,7 @@ export default function Navbar() {
           <NavLink to="/planner">Planner</NavLink>
           <NavLink to="/recipes">Recipes</NavLink>
           <NavLink to="/grocery">Grocery</NavLink>
+          <NavLink to="/pantry">Pantry</NavLink>
           <NavLink to="/blogs">Blogs</NavLink>
           <NavLink to="/about">About us</NavLink>
         </div>
@@ -86,6 +102,28 @@ export default function Navbar() {
           >
             ☰
           </div>
+
+          <div
+  className="cart-icon-wrapper"
+  onClick={() => setIsCartOpen(true)}
+>
+
+  <ShoppingCart  
+  size={20} />
+
+  {
+    cartCount > 0 && (
+
+      <span className="cart-badge">
+
+        {cartCount}
+
+      </span>
+
+    )
+  }
+
+</div>
 
           <div
             className="profile-circle"
@@ -163,6 +201,27 @@ export default function Navbar() {
         </div>
 
       )}
+
+      {
+  isCartOpen && (
+
+    <>
+
+      <div
+        className="cart-backdrop"
+        onClick={() =>
+          setIsCartOpen(false)
+        }
+      ></div>
+
+      <CartSidebar
+        setIsCartOpen={setIsCartOpen}
+      />
+
+    </>
+
+  )
+}
 
     </>
   );

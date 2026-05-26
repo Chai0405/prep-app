@@ -1,0 +1,28 @@
+.seafood-hero {
+  background:
+    url("/hero/seafood-hero.jpg")
+    center / cover no-repeat;
+}
+
+.seafood-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,30,42,0.24),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.seafood-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,200,255,0.18);
+}
+
+.seafood-grid .product-price {
+  color: #9ed8ff;
+}

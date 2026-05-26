@@ -1,0 +1,13 @@
+.bakery-hero {
+  background:
+    url("/hero/bakery-hero.jpg")
+    center / cover no-repeat;
+}
+
+.category-filters button.active-filter {
+  background: white;
+
+  color: black;
+
+  border-color: white;
+}

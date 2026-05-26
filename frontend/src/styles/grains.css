@@ -1,0 +1,28 @@
+.grains-hero {
+  background:
+    url("/hero/grains-hero.webp")
+    center / cover no-repeat;
+}
+
+.grains-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(42,34,18,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.grains-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(214,184,120,0.18);
+}
+
+.grains-grid .product-price {
+  color: #e6c98a;
+}

@@ -1,0 +1,28 @@
+.oils-hero {
+  background:
+    url("/hero/oils-hero.jpg")
+    center / cover no-repeat;
+}
+
+.oils-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(58,42,12,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.oils-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,210,120,0.16);
+}
+
+.oils-grid .product-price {
+  color: #f2d18a;
+}

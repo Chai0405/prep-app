@@ -1,0 +1,28 @@
+.beverages-hero {
+  background:
+    url("/hero/beverages-hero.webp")
+    center / cover no-repeat;
+}
+
+.beverages-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,42,34,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.beverages-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,255,210,0.16);
+}
+
+.beverages-grid .product-price {
+  color: #98f2d0;
+}

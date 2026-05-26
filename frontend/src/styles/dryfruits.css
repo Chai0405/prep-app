@@ -1,0 +1,28 @@
+.dryfruits-hero {
+  background:
+    url("/hero/dryfruits-hero.webp")
+    center / cover no-repeat;
+}
+
+.dryfruits-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(64,42,18,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.dryfruits-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(212,176,120,0.18);
+}
+
+.dryfruits-grid .product-price {
+  color: #f0cb8b;
+}

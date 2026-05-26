@@ -1,0 +1,28 @@
+.dairy-hero {
+  background:
+    url("/hero/dairy-hero.jpeg")
+    center / cover no-repeat;
+}
+
+.dairy-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.06),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.dairy-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,255,255,0.16);
+}
+
+.dairy-grid .product-price {
+  color: #f3f3f3;
+}
