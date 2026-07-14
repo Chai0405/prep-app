@@ -5,7 +5,8 @@ import Grocery from "../models/Grocery.js";
 ========================= */
 export const getGrocery = async (req, res) => {
   try {
-    const grocery = await Grocery.findOne({ user: req.user });
+
+const grocery = await Grocery.findOne({ user: req.user });
 
     if (!grocery) {
       return res.json({ items: [] });

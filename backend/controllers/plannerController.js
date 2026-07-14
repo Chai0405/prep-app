@@ -33,6 +33,10 @@ cleanedMeals[day][mealType] =
 
 /* ---------- SAVE PLANNER ---------- */
 
+console.log(req.body);
+console.log(cleanedMeals);
+console.log(planner);
+
 const planner = await Planner.findOneAndUpdate(
 {user:userId,weekStart},
 {user:userId,weekStart,meals:cleanedMeals},
