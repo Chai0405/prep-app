@@ -360,7 +360,7 @@ export default function Dashboard() {
 
             <div className="contact-item">
               <span>Location</span>
-              <p>Banjara Hills, Hyderabad</p>
+              <p>Mannagudda, Mangalore, Karnataka, India</p>
             </div>
 
           </div>
