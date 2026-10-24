@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddToPlannerModal from "../components/AddToPlannerModal";
+import Toast from "../components/Toast";
 import "../styles/recipeDetail.css"
 import { apiFetch } from "../utils/api";
 import LoadingState from "../components/LoadingState";
@@ -13,6 +14,7 @@ const navigate = useNavigate();
 const [recipe,setRecipe] = useState(null);
 const [notFound,setNotFound] = useState(false);
 const [showPlannerModal,setShowPlannerModal] = useState(false);
+const [toast,setToast] = useState("");
 
 /* ================= FETCH RECIPE ================= */
 
@@ -171,9 +173,18 @@ image:recipe.image,
 calories:recipe.calories
 }}
 onClose={()=>setShowPlannerModal(false)}
+onAdded={({ day, meal, alreadyPlanned })=>setToast(
+alreadyPlanned ? `Already in ${day} · ${meal}` : `✓ Added to ${day} · ${meal}`
+)}
 />
 
 )}
+
+<Toast
+message={toast}
+setMessage={setToast}
+action={{ label: "View planner", to: "/planner" }}
+/>
 
 
 

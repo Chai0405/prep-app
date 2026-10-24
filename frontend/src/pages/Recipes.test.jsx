@@ -38,6 +38,7 @@ describe("Recipes page", () => {
     render(<MemoryRouter initialEntries={["/recipes?request=Chicken%20Biryani"]}><Recipes /></MemoryRouter>);
 
     expect(await screen.findByLabelText("Recipe name")).toHaveValue("Chicken Biryani");
-    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
+    // the scroll runs in an effect just after the form renders
+    await vi.waitFor(() => expect(Element.prototype.scrollIntoView).toHaveBeenCalled());
   });
 });

@@ -33,7 +33,7 @@ const getWeekStart = () => {
   return monday.toISOString();
 };
 
-export default function AddToPlannerModal({ recipe, onClose }) {
+export default function AddToPlannerModal({ recipe, onClose, onAdded }) {
 
   const navigate = useNavigate();
 
@@ -44,69 +44,57 @@ export default function AddToPlannerModal({ recipe, onClose }) {
   const [openMeal,setOpenMeal] = useState(false);
 
 
+  const [saving,setSaving] = useState(false);
+  const [error,setError] = useState("");
+
   /* ================= ADD TO PLANNER ================= */
 
+  // One request: the server adds this recipe to the chosen day/meal and
+  // updates the grocery list, so the whole week isn't sent back and forth
   const handleAdd = async () => {
+
+    if (saving) return;
 
     if (!localStorage.getItem("token")) {
       navigate("/auth");
       return;
     }
 
-    const weekStart = getWeekStart();
+    setSaving(true);
+    setError("");
 
     try {
 
-    const plannerRes = await apiFetch(`/api/planner?weekStart=${weekStart}`);
+      const res = await apiFetch("/api/planner/add", {
+        method: "POST",
+        body: {
+          weekStart: getWeekStart(),
+          day: dayMap[day],
+          meal: meal.toLowerCase(),
+          recipeId: recipe._id
+        }
+      });
 
-    if (plannerRes.status === 401) {
-      navigate("/auth");
-      return;
+      if (res.status === 401) {
+        navigate("/auth");
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setError(data.message || "Couldn't add to planner. Please try again.");
+        return;
+      }
+
+      onAdded?.({ day, meal, alreadyPlanned: data.alreadyPlanned });
+      onClose();
+
+    } catch {
+      setError("Couldn't add to planner. Please check your connection.");
+    } finally {
+      setSaving(false);
     }
-
-    const plannerData = await plannerRes.json();
-
-    const meals = plannerData?.meals || {
-  monday:{},
-  tuesday:{},
-  wednesday:{},
-  thursday:{},
-  friday:{},
-  saturday:{},
-  sunday:{}
-};
-
-    const updatedMeals = JSON.parse(JSON.stringify(meals));
-
-if(!updatedMeals[dayMap[day]]){
-  updatedMeals[dayMap[day]] = {};
-}
-
-if(!updatedMeals[dayMap[day]][meal.toLowerCase()]){
-  updatedMeals[dayMap[day]][meal.toLowerCase()] = [];
-}
-
-const slot = updatedMeals[dayMap[day]][meal.toLowerCase()];
-
-if (!slot.some(m => (m._id || m) === recipe._id)) {
-  slot.push({
-    _id: recipe._id,
-    title: recipe.title,
-    image: recipe.image,
-    calories: recipe.calories
-  });
-}
-
-await apiFetch("/api/planner",{
-method:"POST",
-body:{ weekStart, meals:updatedMeals }
-});
-
-    } catch (err) {
-      console.error("Add to planner failed:", err);
-    }
-
-    onClose(true);
   };
 
 
@@ -214,11 +202,17 @@ body:{ weekStart, meals:updatedMeals }
 
         {/* BUTTON */}
 
+        {error && (
+          <p className="planner-modal-error" role="alert">{error}</p>
+        )}
+
         <button
           className="planner-btn"
           onClick={handleAdd}
+          disabled={saving}
+          aria-busy={saving}
         >
-          ADD TO PLANNER
+          {saving ? "ADDING..." : "ADD TO PLANNER"}
         </button>
 
 
