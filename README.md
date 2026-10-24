@@ -151,8 +151,9 @@ Copy the examples and fill in your own values. Never commit a real `.env`
 | `MONGO_URI` | backend | yes | MongoDB connection string |
 | `JWT_SECRET` | backend | yes | Signs login tokens. Use a long random value |
 | `CLIENT_URL` | backend | yes | Frontend URL: used in email links and allowed by CORS |
-| `RESEND_API_KEY` | backend | for email | Sends verification and password emails |
-| `MAIL_FROM` | backend | for email | Sender address for those emails |
+| `BREVO_API_KEY` | backend | for email | Brevo key (free). Used when set; `MAIL_FROM` must be a verified sender in Brevo |
+| `RESEND_API_KEY` | backend | alternative | Resend key. Without a verified domain it only delivers to the Resend account owner |
+| `MAIL_FROM` | backend | for email | Sender, e.g. `PREP <you@gmail.com>` |
 | `PORT` | backend | no | Defaults to 5000 |
 | `CORS_ORIGINS` | backend | no | Extra allowed frontend origins, comma-separated |
 | `VITE_API_URL` | frontend | yes | Backend base URL. Public: it is bundled into the browser |
