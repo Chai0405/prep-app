@@ -50,3 +50,54 @@
     transform: none;
   }
 }
+
+/* =========================
+   TICK LIST (lifestyle section)
+   Points pop in one by one, then each tick turns green
+========================= */
+
+.tick-list .tick-item {
+  opacity: 0;
+  transform-origin: left center;
+}
+
+.reveal-group.is-visible .tick-item {
+  animation: tick-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.5s + var(--tick-order, 0) * 0.45s);
+}
+
+.reveal-group.is-visible .tick-item::before {
+  animation: tick-green 0.45s ease forwards;
+  animation-delay: calc(0.8s + var(--tick-order, 0) * 0.45s);
+}
+
+@keyframes tick-pop {
+  0%   { opacity: 0; transform: translateX(-14px) scale(0.96); }
+  55%  { opacity: 1; transform: translateX(0) scale(1.08); }
+  100% { opacity: 1; transform: none; }
+}
+
+@keyframes tick-green {
+  0%   { color: #6e706b; transform: scale(1); }
+  50%  { color: #5fd38a; transform: scale(1.35); }
+  100% { color: #5fd38a; transform: scale(1); }
+}
+
+/* the tick is absolutely positioned; let it scale from its own centre */
+.tick-list .tick-item::before {
+  display: inline-block;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick-list .tick-item,
+  .reveal-group.is-visible .tick-item {
+    opacity: 1;
+    animation: none;
+  }
+
+  .reveal-group.is-visible .tick-item::before {
+    animation: none;
+    color: #5fd38a;
+  }
+}

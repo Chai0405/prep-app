@@ -12,6 +12,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [newsletterMessage, setNewsletterMessage] = useState("");
   const [benefitsRef, benefitsVisible] = useInView();
+  const [lifestyleRef, lifestyleVisible] = useInView({ threshold: 0.3 });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,22 +31,26 @@ export default function Dashboard() {
 
 
       {/* ================= LIFESTYLE ================= */}
-      <section className="dashboard-lifestyle">
+      <section
+        ref={lifestyleRef}
+        className={`dashboard-lifestyle reveal-group ${lifestyleVisible ? "is-visible" : ""}`}
+      >
 
         <div className="lifestyle-left">
-          <h2>
+          <h2 className="reveal-item">
             It’s not just planning,<br />
             <span>It’s a lifestyle - curated</span>
           </h2>
 
-          <p className="lifestyle-desc">
+          <p className="lifestyle-desc reveal-item" style={{ "--reveal-order": 1 }}>
             Prep helps you organise meals with clarity and intention.
             Plan your week, reduce decision fatigue, and enjoy food that
             fits your life — not the other way around.
           </p>
 
           <button
-            className="lifestyle-btn"
+            className="lifestyle-btn reveal-item"
+            style={{ "--reveal-order": 2 }}
             onClick={() =>
               document
                 .querySelector(".benefits-section")
@@ -57,11 +62,17 @@ export default function Dashboard() {
         </div>
 
         <div className="lifestyle-right">
-          <ul>
-            <li>Weekly meal planning made simple</li>
-            <li>Flexible plans that adapt to you</li>
-            <li>Smart grocery & recipe organisation</li>
-            <li>Less stress. More consistency.</li>
+          <ul className="tick-list">
+            {[
+              "Weekly meal planning made simple",
+              "Flexible plans that adapt to you",
+              "Smart grocery & recipe organisation",
+              "Less stress. More consistency.",
+            ].map((point, index) => (
+              <li key={point} className="tick-item" style={{ "--tick-order": index }}>
+                {point}
+              </li>
+            ))}
           </ul>
         </div>
 
