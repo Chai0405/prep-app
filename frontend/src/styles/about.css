@@ -187,3 +187,74 @@
     font-size: 28px;
   }
 }
+
+/* =========================
+   ANIMATIONS
+   Fade-ups come from reveal.css (.reveal-group / .reveal-item).
+========================= */
+
+/* photo: fades in and settles from a slight zoom */
+.about-photo {
+  overflow: hidden;
+}
+
+.about-photo img {
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 1.2s ease 0.2s,
+    transform 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.about-photo.is-visible img {
+  opacity: 1;
+  transform: none;
+}
+
+/* signature "writes itself" left to right, then the name follows */
+.about-signature {
+  clip-path: inset(0 100% 0 0);
+}
+
+.about-signoff .about-name,
+.about-signoff .about-role {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about-signoff.is-signing .about-signature {
+  animation: about-sign 1.8s cubic-bezier(0.45, 0.05, 0.35, 1) 0.15s forwards;
+}
+
+.about-signoff.is-signing .about-name {
+  opacity: 1;
+  transform: none;
+  transition-delay: 1.5s;
+}
+
+.about-signoff.is-signing .about-role {
+  opacity: 1;
+  transform: none;
+  transition-delay: 1.7s;
+}
+
+@keyframes about-sign {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo img,
+  .about-signoff .about-name,
+  .about-signoff .about-role {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .about-signature,
+  .about-signoff.is-signing .about-signature {
+    clip-path: none;
+    animation: none;
+  }
+}
