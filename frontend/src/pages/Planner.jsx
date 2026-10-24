@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MealSelectorModal from "../components/MealSelectorModal";
+import WeekOverview from "../components/WeekOverview";
 import "../styles/planner.css";
 import { apiFetch } from "../utils/api";
 
@@ -9,6 +10,9 @@ const DAYS = [
 ];
 
 const MEALS = ["Breakfast","Lunch","Dinner","Snacks"];
+
+// selected in the left list instead of a day
+const OVERVIEW = "Week overview";
 
 const dayMap = {
   Monday:"monday",
@@ -196,8 +200,11 @@ your grocery list. Structure your week thoughtfully.
 
 <div className="planner-week-list">
 
-<button className="week-item static">
-▸ Food Pyramid
+<button
+className={`week-item week-item-overview ${activeDay === OVERVIEW ? "active":""}`}
+onClick={()=>setActiveDay(OVERVIEW)}
+>
+{activeDay === OVERVIEW ? "▾":"▸"} {OVERVIEW}
 </button>
 
 {DAYS.map(day=>(
@@ -218,6 +225,24 @@ onClick={()=>setActiveDay(day)}
 
 <section className="planner-right">
 
+{activeDay === OVERVIEW ? (
+
+<>
+<div className="planner-right-header">
+<h3>{OVERVIEW}</h3>
+</div>
+
+<WeekOverview
+planner={planner}
+days={DAYS}
+meals={MEALS}
+onOpen={(day,meal)=>{ setActiveDay(day); setActiveMeal(meal); }}
+/>
+</>
+
+) : (
+
+<>
 <div className="planner-right-header">
 
 <h3>{activeMeal}</h3>
@@ -305,6 +330,9 @@ onClick={()=>setShowMealModal(true)}
 </div>
 
 </div>
+</>
+
+)}
 
 </section>
 
