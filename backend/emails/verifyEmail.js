@@ -1,4 +1,5 @@
 import mailTemplate from "../utils/mailTemplate.js";
+import escapeHtml from "../utils/escapeHtml.js";
 
 const verifyEmail = (name, link) => {
 
@@ -8,7 +9,7 @@ const content = `
 <td align="left" style="color:#ffffff;font-family:Inter, Arial, sans-serif;line-height:1.6">
 
 <p style="margin-bottom:10px;font-size:16px;">
-Hi ${name},
+Hi ${escapeHtml(name)},
 </p>
 
 <p style="color:#a6a6a6;font-size:14px;margin-bottom:12px;">

@@ -6,8 +6,11 @@ import { MongoMemoryServer } from "mongodb-memory-server-core";
 // Tests must never read the real .env (production database, live API keys)
 vi.mock("dotenv", () => ({ default: { config: () => ({}) }, config: () => ({}) }));
 
-// ...or send real email
-vi.mock("../utils/sendEmail.js", () => ({ default: vi.fn(async () => {}) }));
+// ...or send real email (helpers like parseSender stay real)
+vi.mock("../utils/sendEmail.js", async (importOriginal) => ({
+  ...(await importOriginal()),
+  default: vi.fn(async () => true),
+}));
 
 Object.assign(process.env, {
   NODE_ENV: "test",

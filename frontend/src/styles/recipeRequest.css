@@ -1,0 +1,138 @@
+/* =========================
+   "Can't find a recipe?" request section (Recipes page)
+========================= */
+
+.recipe-request {
+  padding: 0 80px 90px;
+}
+
+.recipe-request-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #0e0e0e 0%, #070707 100%);
+  text-align: center;
+}
+
+.recipe-request h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.recipe-request-sub {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  color: #9c9c9c;
+  margin-bottom: 26px;
+}
+
+.recipe-request-form {
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+
+.recipe-request-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.recipe-request-form label span {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #bdbdbd;
+}
+
+.recipe-request-form label em {
+  font-style: normal;
+  color: #777;
+}
+
+.recipe-request-form input,
+.recipe-request-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #fff;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.25s ease;
+}
+
+.recipe-request-form input:focus,
+.recipe-request-form textarea:focus {
+  outline: none;
+  border-color: #5fd38a;
+}
+
+.recipe-request-form button,
+.recipe-request-again {
+  justify-self: center;
+  padding: 12px 32px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.recipe-request-form button:hover:not(:disabled),
+.recipe-request-again:hover {
+  background: #fff;
+  color: #000;
+}
+
+.recipe-request-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.recipe-request-error {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 13px;
+  color: #ffb4b4;
+}
+
+.recipe-request-done p {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  color: #5fd38a;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.recipe-request-login {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+.recipe-request-login a {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .recipe-request {
+    padding: 0 16px 60px;
+  }
+
+  .recipe-request-card {
+    padding: 28px 18px;
+  }
+
+  .recipe-request h2 {
+    font-size: 24px;
+  }
+}

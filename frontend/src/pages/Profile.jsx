@@ -429,7 +429,7 @@ export default function Profile() {
 
             <p className="delete-warning">
               This permanently deletes your account, meal plans, grocery
-              list and newsletter subscription. This cannot be undone.
+              list, recipe requests and newsletter subscription. This cannot be undone.
             </p>
 
             <input

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "../styles/recipes.css";
 import { apiFetch } from "../utils/api";
 import LoadingState from "../components/LoadingState";
+import RecipeRequestForm from "../components/RecipeRequestForm";
 
 export default function Recipes() {
 
@@ -147,6 +148,9 @@ onClick={()=>navigate(`/recipes/${recipe._id}`)}
 
 </section>
 
+{/* REQUEST A RECIPE */}
+
+{status === "ready" && <RecipeRequestForm />}
 
 </div>
 

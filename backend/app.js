@@ -11,6 +11,7 @@ import plannerRoutes from "./routes/plannerRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import groceryRoutes from "./routes/groceryRoutes.js";
 import newsletterRoutes from "./routes/newsletter.js";
+import recipeRequestRoutes from "./routes/recipeRequestRoutes.js";
 
 // Builds the Express app without connecting to the database or listening,
 // so tests can exercise it against an in-memory database.
@@ -74,6 +75,7 @@ const createApp = () => {
   app.use("/api/recipes", recipeRoutes);
   app.use("/api/grocery", groceryRoutes);
   app.use("/api/newsletter", newsletterRoutes);
+  app.use("/api/recipe-requests", recipeRequestRoutes);
 
   app.get("/", (req, res) => {
     res.send("PREP backend running 🚀");

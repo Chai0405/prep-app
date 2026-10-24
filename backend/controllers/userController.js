@@ -4,6 +4,7 @@ import User from "../models/User.js";
 import Planner from "../models/Planner.js";
 import Grocery from "../models/Grocery.js";
 import Newsletter from "../models/Newsletter.js";
+import RecipeRequest from "../models/RecipeRequest.js";
 import { toSafeUser, clearSession } from "../utils/session.js";
 import { validateAvatar } from "../utils/avatar.js";
 
@@ -63,7 +64,8 @@ export const updateAvatar = async (req, res) => {
 
 /*
   Permanently deletes the account and everything tied to it:
-  planners, grocery list, newsletter subscription, then the user itself.
+  planners, grocery list, newsletter subscription, recipe requests,
+  then the user itself.
   The app keeps no order or payment records yet, so nothing is retained.
   Old tokens stop working because the auth middleware requires the user to exist.
 */
@@ -93,6 +95,7 @@ export const deleteAccount = async (req, res) => {
     await Planner.deleteMany({ user: user._id });
     await Grocery.deleteMany({ user: user._id });
     await Newsletter.deleteMany({ email: user.email });
+    await RecipeRequest.deleteMany({ user: user._id });
     await User.deleteOne({ _id: user._id });
 
     clearSession(res);

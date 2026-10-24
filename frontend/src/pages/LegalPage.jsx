@@ -19,8 +19,8 @@ const PAGES = {
         <h2>Account data</h2>
         <p>
           Your name, email address, a hashed password, an optional profile
-          picture, your weekly meal plans, your grocery list and, if you
-          subscribe, your newsletter email address.
+          picture, your weekly meal plans, your grocery list, any recipes you
+          request and, if you subscribe, your newsletter email address.
         </p>
 
         <h2>Storage on your device</h2>
@@ -38,8 +38,8 @@ const PAGES = {
         <h2>Deleting your account</h2>
         <p>
           You can delete your account from your profile. This permanently
-          removes your account, meal plans, grocery list and newsletter
-          subscription.
+          removes your account, meal plans, grocery list, recipe requests and
+          newsletter subscription.
         </p>
 
         <h2>Third parties</h2>

@@ -154,6 +154,7 @@ Copy the examples and fill in your own values. Never commit a real `.env`
 | `BREVO_API_KEY` | backend | for email | Brevo key (free). Used when set; `MAIL_FROM` must be a verified sender in Brevo |
 | `RESEND_API_KEY` | backend | alternative | Resend key. Without a verified domain it only delivers to the Resend account owner |
 | `MAIL_FROM` | backend | for email | Sender, e.g. `PREP <you@gmail.com>` |
+| `ADMIN_EMAIL` | backend | no | Where recipe requests are emailed. Defaults to the `MAIL_FROM` address |
 | `PORT` | backend | no | Defaults to 5000 |
 | `CORS_ORIGINS` | backend | no | Extra allowed frontend origins, comma-separated |
 | `VITE_API_URL` | frontend | yes | Backend base URL. Public: it is bundled into the browser |
@@ -247,6 +248,7 @@ current password and type `DELETE`. The server then permanently deletes:
 - the user's meal plans (Planner)
 - their grocery list (Grocery)
 - their newsletter subscription (Newsletter, matched by email)
+- their recipe requests (RecipeRequest)
 - the user record itself
 
 PREP stores no orders or payment records yet, so nothing is retained. When
