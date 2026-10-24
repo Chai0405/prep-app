@@ -184,6 +184,21 @@ Open the application in your browser
 
 ---
 
+## 📱 Install as an app
+
+PREP is an installable web app (PWA): it gets its own home-screen icon and
+opens full screen, without the browser bar. Updates arrive automatically
+with each deploy; there is no app store.
+
+- **Android (Chrome):** open the site → ⋮ menu → **Install app** (or **Add to Home screen**).
+- **iPhone (Safari):** open the site → **Share** → **Add to Home Screen**.
+- **Desktop (Chrome/Edge):** the install icon at the right of the address bar.
+
+Files: `frontend/public/manifest.webmanifest` and `frontend/public/icons/`.
+There is no service worker, so the app needs an internet connection.
+
+---
+
 ## 🧪 Tests and checks
 
     cd backend
