@@ -261,7 +261,7 @@ onClick={()=>setActiveMeal(meal)}
 <div key={index} className="planner-grid-card">
 
 <div className="planner-card-image">
-<img src={meal.image} alt={meal.title}/>
+<img loading="lazy" decoding="async" src={meal.image} alt={meal.title}/>
 </div>
 
 <div className="planner-card-body">

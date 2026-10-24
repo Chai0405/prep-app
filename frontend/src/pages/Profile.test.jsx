@@ -102,16 +102,40 @@ describe("Profile › avatar", () => {
     expect(fetchMock.mock.calls.some(([, o]) => o?.method === "PUT")).toBe(false);
   });
 
-  it("uploads the resized image and shows it", async () => {
+  it("previews the picked image and only saves after Update Avatar", async () => {
     const user = userEvent.setup();
     const fetchMock = setupAvatar(() => json({ name: "Test User", avatar: "data:image/jpeg;base64,/9j/AAAA" }));
+    const navbarUpdates = [];
+    const listener = (e) => navbarUpdates.push(e.detail);
+    window.addEventListener("prep:user-updated", listener);
     await screen.findByText("Test User");
 
     await user.upload(screen.getByLabelText("Change Avatar"), new File(["x"], "me.png", { type: "image/png" }));
 
+    // preview shown, nothing uploaded yet
     expect(await screen.findByAltText("Avatar")).toHaveAttribute("src", "data:image/jpeg;base64,/9j/AAAA");
+    expect(fetchMock.mock.calls.some(([, o]) => o?.method === "PUT")).toBe(false);
+
+    await user.click(screen.getByRole("button", { name: "Update Avatar" }));
+
+    expect(await screen.findByText("Avatar updated")).toBeInTheDocument();
     const put = fetchMock.mock.calls.find(([, o]) => o?.method === "PUT");
     expect(JSON.parse(put[1].body)).toEqual({ avatar: "data:image/jpeg;base64,/9j/AAAA" });
+    expect(screen.getByLabelText("Change Avatar")).toBeInTheDocument(); // back to normal
+    expect(navbarUpdates.at(-1)).toMatchObject({ avatar: "data:image/jpeg;base64,/9j/AAAA" });
+    window.removeEventListener("prep:user-updated", listener);
+  });
+
+  it("Cancel discards the preview without uploading", async () => {
+    const user = userEvent.setup();
+    const fetchMock = setupAvatar(() => json({}));
+    await screen.findByText("Test User");
+
+    await user.upload(screen.getByLabelText("Change Avatar"), new File(["x"], "me.png", { type: "image/png" }));
+    await user.click(await screen.findByRole("button", { name: "Cancel" }));
+
+    expect(screen.queryByAltText("Avatar")).not.toBeInTheDocument(); // back to initials
+    expect(fetchMock.mock.calls.some(([, o]) => o?.method === "PUT")).toBe(false);
   });
 
   it("shows the server's reason when an upload is refused", async () => {
@@ -120,6 +144,7 @@ describe("Profile › avatar", () => {
     await screen.findByText("Test User");
 
     await user.upload(screen.getByLabelText("Change Avatar"), new File(["x"], "me.png", { type: "image/png" }));
+    await user.click(await screen.findByRole("button", { name: "Update Avatar" }));
 
     expect(await screen.findByText("Avatar upload failed")).toBeInTheDocument();
   });

@@ -409,7 +409,7 @@ const [formData, setFormData] =
   className="checkout-item"
 >
 
-  <img
+  <img loading="lazy" decoding="async"
     src={item.image}
     alt={item.name}
   />

@@ -5,7 +5,7 @@ const bakeryProducts = [
 
     name: "Butter Croissant",
 
-    image: "/pantry/croissant.avif",
+    image: "/pantry/croissant.webp",
 
     price: 140,
 
@@ -45,7 +45,7 @@ const bakeryProducts = [
 
   name: "Multigrain Bread",
 
-  image: "/pantry/multigrain-bread.avif",
+  image: "/pantry/multigrain-bread.webp",
 
   price: 180,
 

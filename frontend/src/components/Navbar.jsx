@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { ShoppingCart  } from "lucide-react";
 import CartSidebar from "../components/CartSidebar";
 import { apiFetch } from "../utils/api";
+import { USER_UPDATED } from "../utils/userEvents";
 
 export default function Navbar() {
 
@@ -24,6 +25,13 @@ export default function Navbar() {
       .then(data => setUser(data))
       .catch(() => setUser(null));
 
+  }, []);
+
+  // Profile edits (avatar, name) show up here without a reload
+  useEffect(() => {
+    const update = (e) => setUser(e.detail);
+    window.addEventListener(USER_UPDATED, update);
+    return () => window.removeEventListener(USER_UPDATED, update);
   }, []);
 
 

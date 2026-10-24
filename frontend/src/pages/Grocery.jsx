@@ -251,7 +251,7 @@ key={item._id || index}
 className={`grocery-item ${item.checked ? "checked" : ""}`}
 >
 
-<img
+<img loading="lazy" decoding="async"
 src={getIngredientImage(item.name)}
 alt={item.name}
 className="grocery-item-img"

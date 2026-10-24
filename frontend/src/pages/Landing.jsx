@@ -24,7 +24,7 @@ Plan recipes, organise ingredients, and reduce daily decision fatigue — all in
       </div>
 
       <div className="landing-right">
-        <img src="/hero-food.png" alt="Hero" />
+        <img src="/hero-food.webp" alt="Hero" />
       </div>
 
     </div>

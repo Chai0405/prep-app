@@ -31,4 +31,4 @@ export const SLIDES = [
   },
 ];
 
-export const SLIDE_DURATION = 8000; // ms each slide stays; the fade is set in heroSlider.css
+export const SLIDE_DURATION = 5000; // ms each slide stays; the fade is set in heroSlider.css

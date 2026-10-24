@@ -29,7 +29,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
   src="/pantry/pantry-fresh-produce.webp"
   alt="Fresh Produce"
 />
@@ -48,7 +48,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-bakery.webp"
       alt="Bakery"
     />
@@ -67,7 +67,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-protien-meat.webp"
       alt="Protein & Meat"
     />
@@ -86,7 +86,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-seafood.webp"
       alt="Seafood"
     />
@@ -105,7 +105,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-spices.webp"
       alt="Spices & Seasonings"
     />
@@ -124,7 +124,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-dairy-eggs.jpg"
       alt="Dairy & Eggs"
     />
@@ -143,7 +143,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-oils.jpg"
       alt="Oils"
     />
@@ -162,7 +162,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-pulses-grains.jpg"
       alt="Pulses & Grains"
     />
@@ -181,7 +181,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-dry-fruits.jpg"
       alt="Dry Fruits"
     />
@@ -200,7 +200,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-beverages.jpeg"
       alt="Beverages"
     />
@@ -219,7 +219,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-jams-sauces.jpeg"
       alt="Jams & Sauces"
     />
@@ -238,7 +238,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-herbs.jpg"
       alt="Herbs"
     />
@@ -257,7 +257,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-tea-coffee.jpg"
       alt="Tea & Coffee"
     />
@@ -276,7 +276,7 @@ const Pantry = () => {
   className="pantry-link"
   >
   <div className="pantry-card">
-    <img
+    <img loading="lazy" decoding="async"
       src="/pantry/pantry-organic.jpg"
       alt="Organic Picks"
     />

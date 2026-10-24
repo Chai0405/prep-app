@@ -24,7 +24,7 @@ export default function Blogs() {
 
           <div className="featured-card">
             <div className="featured-image">
-              <img src="/blogs/meal-rhythm.webp" alt="Meal Rhythm" />
+              <img loading="lazy" decoding="async" src="/blogs/meal-rhythm.webp" alt="Meal Rhythm" />
             </div>
 
             <div className="featured-content">
@@ -45,7 +45,7 @@ export default function Blogs() {
 
           <div className="featured-card">
             <div className="featured-image">
-              <img src="/blogs/balanced-eating.webp" alt="Balanced Eating" />
+              <img loading="lazy" decoding="async" src="/blogs/balanced-eating.webp" alt="Balanced Eating" />
             </div>
 
             <div className="featured-content">
@@ -71,7 +71,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/meal-prep.jpg" alt="Meal Prep" />
+              <img loading="lazy" decoding="async" src="/blogs/meal-prep.jpg" alt="Meal Prep" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Why Meal Prep Fails (And How to Fix It)</h3>
@@ -83,7 +83,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/grocery-smart.jpg" alt="Grocery Smart" />
+              <img loading="lazy" decoding="async" src="/blogs/grocery-smart.jpg" alt="Grocery Smart" />
             </div>
             <span className="blog-tag">Grocery</span>
             <h3>Smart Grocery Lists That Save Time</h3>
@@ -95,7 +95,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/consistency.jpg" alt="Consistency" />
+              <img loading="lazy" decoding="async" src="/blogs/consistency.jpg" alt="Consistency" />
             </div>
             <span className="blog-tag">Mindset</span>
             <h3>Consistency Over Motivation</h3>
@@ -107,7 +107,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/repeat-meals.jpg" alt="Repeat Meals" />
+              <img loading="lazy" decoding="async" src="/blogs/repeat-meals.jpg" alt="Repeat Meals" />
             </div>
             <span className="blog-tag">Cooking</span>
             <h3>Meals You’ll Actually Repeat</h3>
@@ -119,7 +119,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/food-system.webp" alt="Food System" />
+              <img loading="lazy" decoding="async" src="/blogs/food-system.webp" alt="Food System" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Stop Relying on Willpower — Build a Food System Instead</h3>
@@ -131,7 +131,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/kitchen-workflow.avif" alt="Kitchen Workflow" />
+              <img loading="lazy" decoding="async" src="/blogs/kitchen-workflow.webp" alt="Kitchen Workflow" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Your Kitchen Needs a Workflow, Not More Recipes</h3>
@@ -143,7 +143,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/hidden-price.avif" alt="Hidden Price" />
+              <img loading="lazy" decoding="async" src="/blogs/hidden-price.webp" alt="Hidden Price" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>The Hidden Cost of Unplanned Eating</h3>
@@ -155,7 +155,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/diet-fails.jpg" alt="Diet Fails" />
+              <img loading="lazy" decoding="async" src="/blogs/diet-fails.jpg" alt="Diet Fails" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Why “Eating Healthy” Fails Without Structure</h3>
@@ -167,7 +167,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/core-plan.jpg" alt="Core Plan" />
+              <img loading="lazy" decoding="async" src="/blogs/core-plan.jpg" alt="Core Plan" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Build Once, Repeat Weekly: The Core Meals Method</h3>
@@ -179,7 +179,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/food-clarity.jpg" alt="Food Clarity" />
+              <img loading="lazy" decoding="async" src="/blogs/food-clarity.jpg" alt="Food Clarity" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>From Decision Fatigue to Food Clarity</h3>
@@ -191,7 +191,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/discipline.jpg" alt="Discipline" />
+              <img loading="lazy" decoding="async" src="/blogs/discipline.jpg" alt="Discipline" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Discipline Over Motivation: The Real Secret to Consistency</h3>
@@ -203,7 +203,7 @@ export default function Blogs() {
 
           <div className="blog-card">
             <div className="blog-image">
-              <img src="/blogs/week-plan.jpg" alt="Week Plan" />
+              <img loading="lazy" decoding="async" src="/blogs/week-plan.jpg" alt="Week Plan" />
             </div>
             <span className="blog-tag">Habits</span>
             <h3>Design Your Week Before It Designs Your Diet</h3>

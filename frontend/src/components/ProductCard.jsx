@@ -12,7 +12,7 @@ const PantryProductCard = ({
   return (
     <div className="product-card">
 
-      <img
+      <img loading="lazy" decoding="async"
         src={product.image}
         alt={product.name}
       />

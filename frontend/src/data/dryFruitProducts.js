@@ -165,7 +165,7 @@ const dryFruitProducts = [
 
     name: "Chia Seeds",
 
-    image: "/pantry/chia-seeds.avif",
+    image: "/pantry/chia-seeds.webp",
 
     price: 360,
 

@@ -25,7 +25,7 @@ const grainProducts = [
 
     name: "Brown Rice",
 
-    image: "/pantry/brown-rice.avif",
+    image: "/pantry/brown-rice.webp",
 
     price: 360,
 
@@ -65,7 +65,7 @@ const grainProducts = [
 
     name: "Rolled Oats",
 
-    image: "/pantry/oats.avif",
+    image: "/pantry/oats.webp",
 
     price: 240,
 
@@ -125,7 +125,7 @@ const grainProducts = [
 
     name: "Chickpeas",
 
-    image: "/pantry/chickpeas.avif",
+    image: "/pantry/chickpeas.webp",
 
     price: 220,
 
@@ -205,7 +205,7 @@ const grainProducts = [
 
     name: "Black Beans",
 
-    image: "/pantry/black-beans.avif",
+    image: "/pantry/black-beans.webp",
 
     price: 320,
 
@@ -325,7 +325,7 @@ const grainProducts = [
 
   name: "Sooji",
 
-  image: "/pantry/sooji.avif",
+  image: "/pantry/sooji.webp",
 
   price: 120,
 

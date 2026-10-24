@@ -103,7 +103,7 @@ className="recipe-card-medium"
 onClick={()=>navigate(`/recipes/${recipe._id}`)}
 >
 
-<img src={recipe.image} alt={recipe.title}/>
+<img loading="lazy" decoding="async" src={recipe.image} alt={recipe.title}/>
 
 <div className="recipe-card-info">
 

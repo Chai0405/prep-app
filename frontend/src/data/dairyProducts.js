@@ -225,7 +225,7 @@ const dairyProducts = [
 
     name: "Oat Milk",
 
-    image: "/pantry/oat-milk.avif",
+    image: "/pantry/oat-milk.webp",
 
     price: 220,
 

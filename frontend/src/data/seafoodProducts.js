@@ -505,7 +505,7 @@ const seafoodProducts = [
 
   name: "Disco Fish",
 
-  image: "/pantry/disco-fish.avif",
+  image: "/pantry/disco-fish.webp",
 
   price: 340,
 

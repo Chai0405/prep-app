@@ -55,7 +55,7 @@ export default function BlogDetail() {
       image: "/blogs/balanced-eating.webp",
       author: {
       name: "Mateo Rodríguez",
-      image: "/authors/blog-2.avif"
+      image: "/authors/blog-2.webp"
     },
       content: `
         <p>
@@ -203,7 +203,7 @@ export default function BlogDetail() {
     },
     "kitchen-workflow": {
       title: "Your Kitchen Needs a Workflow, Not More Recipes",
-      image: "/blogs/kitchen-workflow.avif",
+      image: "/blogs/kitchen-workflow.webp",
       author: {
       name: "Maya Leinenbach",
       image: "/authors/maya-lienenbach.jpg"
@@ -228,7 +228,7 @@ export default function BlogDetail() {
     },
     "hidden-price": {
       title: "The Hidden Cost of Unplanned Eating",
-      image: "/blogs/hidden-price.avif",
+      image: "/blogs/hidden-price.webp",
       author: {
       name: "Samantha Schnur",
       image: "/authors/samantha.webp"
@@ -408,7 +408,7 @@ export default function BlogDetail() {
   </div>
 
   <div className="blog-author">
-  <img src={blog.author.image} alt={blog.author.name} />
+  <img loading="lazy" decoding="async" src={blog.author.image} alt={blog.author.name} />
   <p>{blog.author.name}</p>
 </div>
 
@@ -426,7 +426,7 @@ export default function BlogDetail() {
     <h3>Latest Posts</h3>
 
     <Link to="/blogs/balanced-eating" className="sidebar-post">
-  <img src="/blogs/balanced-eating.webp" alt="" />
+  <img loading="lazy" decoding="async" src="/blogs/balanced-eating.webp" alt="" />
   <div>
     <span className="sidebar-tag">Nutrition</span>
     <p>Balanced Eating Without Counting Calories</p>
@@ -434,7 +434,7 @@ export default function BlogDetail() {
 </Link>
 
 <Link to="/blogs/grocery-lists" className="sidebar-post">
-  <img src="/blogs/grocery-smart.jpg" alt="" />
+  <img loading="lazy" decoding="async" src="/blogs/grocery-smart.jpg" alt="" />
   <div>
     <span className="sidebar-tag">Grocery</span>
     <p>Smart Grocery Lists</p>
@@ -442,7 +442,7 @@ export default function BlogDetail() {
 </Link>
 
 <Link to="/blogs/consistency-over-motivation" className="sidebar-post">
-  <img src="/blogs/consistency.jpg" alt="" />
+  <img loading="lazy" decoding="async" src="/blogs/consistency.jpg" alt="" />
   <div>
     <span className="sidebar-tag">Mindset</span>
     <p>Consistency Over Motivation</p>

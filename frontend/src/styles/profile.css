@@ -381,3 +381,13 @@
   opacity:0.5;
   cursor:not-allowed;
 }
+
+.avatar-actions{
+  display:flex;
+  gap:10px;
+}
+
+.avatar-actions button:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}

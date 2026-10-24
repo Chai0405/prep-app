@@ -265,7 +265,7 @@ const herbProducts = [
 
   name: "Fresh Garlic",
 
-  image: "/pantry/fresh-garlic.avif",
+  image: "/pantry/fresh-garlic.webp",
 
   price: 90,
 

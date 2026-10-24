@@ -293,7 +293,7 @@
 /* ===== teaCoffee ===== */
 .teaCoffee-hero {
   background:
-    url("/hero/tea-coffee-hero.avif")
+    url("/hero/tea-coffee-hero.webp")
     center / cover no-repeat;
 }
 
@@ -323,7 +323,7 @@
 /* ===== organic ===== */
 .organic-hero {
   background:
-    url("/hero/organic-hero.avif")
+    url("/hero/organic-hero.webp")
     center / cover no-repeat;
 }
 

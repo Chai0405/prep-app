@@ -4,6 +4,7 @@ import Toast from "../components/Toast";
 import "../styles/profile.css";
 import { apiFetch } from "../utils/api";
 import { checkAvatarFile, resizeAvatar } from "../utils/avatar";
+import { notifyUserUpdated } from "../utils/userEvents";
 
 export default function Profile() {
 
@@ -11,6 +12,8 @@ export default function Profile() {
   const [showPassword, setShowPassword] = useState(false);
   const [toast,setToast] = useState("");
   const [showDelete, setShowDelete] = useState(false);
+  const [pendingAvatar, setPendingAvatar] = useState(null);
+  const [savingAvatar, setSavingAvatar] = useState(false);
   const [deleteData, setDeleteData] = useState({ password: "", confirm: "" });
   const [deleting, setDeleting] = useState(false);
 
@@ -28,10 +31,11 @@ export default function Profile() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleAvatarUpload = async (e) => {
+  // Step 1: pick a file -> validate, shrink and preview it (nothing saved yet)
+  const handleAvatarSelect = async (e) => {
 
     const file = e.target.files[0];
-    e.target.value = ""; // allow picking the same file again after an error
+    e.target.value = ""; // allow picking the same file again
     if (!file) return;
 
     const fileError = checkAvatarFile(file);
@@ -42,12 +46,24 @@ export default function Profile() {
     }
 
     try {
+      setPendingAvatar(await resizeAvatar(file));
+    } catch (err) {
+      console.error("Avatar processing failed", err);
+      setToast(err.message || "That image could not be used");
+    }
 
-      const avatar = await resizeAvatar(file);
+  };
+
+  // Step 2: "Update Avatar" saves the previewed image
+  const handleAvatarSave = async () => {
+
+    setSavingAvatar(true);
+
+    try {
 
       const res = await apiFetch("/api/user/avatar",{
         method:"PUT",
-        body:{ avatar }
+        body:{ avatar: pendingAvatar }
       });
 
       const data = await res.json().catch(() => ({}));
@@ -58,11 +74,15 @@ export default function Profile() {
       }
 
       setUser(data);
+      setPendingAvatar(null);
+      notifyUserUpdated(data);
       setToast("Avatar updated");
 
     } catch (err) {
       console.error("Avatar upload failed", err);
-      setToast(err.message || "Avatar upload failed");
+      setToast("Avatar upload failed");
+    } finally {
+      setSavingAvatar(false);
     }
 
   };
@@ -134,6 +154,7 @@ export default function Profile() {
       }
 
       setUser(data);
+      notifyUserUpdated(data);
       setEditMode(false);
 
     } catch (err) {
@@ -221,18 +242,37 @@ export default function Profile() {
 
             <div className="avatar-preview">
 
-              {user?.avatar ? (
-                <img src={user.avatar} alt="Avatar"/>
+              {pendingAvatar || user?.avatar ? (
+                <img src={pendingAvatar || user.avatar} alt="Avatar"/>
               ) : (
                 <span>{user?.name?.slice(0,2).toUpperCase()}</span>
               )}
 
             </div>
 
-            <label className="avatar-upload">
-              Change Avatar
-              <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleAvatarUpload} hidden/>
-            </label>
+            {pendingAvatar ? (
+              <div className="avatar-actions">
+                <button
+                  className="save-btn"
+                  onClick={handleAvatarSave}
+                  disabled={savingAvatar}
+                >
+                  {savingAvatar ? "Updating..." : "Update Avatar"}
+                </button>
+                <button
+                  className="profile-outline-btn"
+                  onClick={()=>setPendingAvatar(null)}
+                  disabled={savingAvatar}
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <label className="avatar-upload">
+                Change Avatar
+                <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleAvatarSelect} hidden/>
+              </label>
+            )}
 
           </div>
 

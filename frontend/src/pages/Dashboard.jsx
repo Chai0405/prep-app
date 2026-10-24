@@ -3,12 +3,15 @@ import Carousel from "../components/Carousel";
 import HeroSlider from "../components/HeroSlider";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
+import "../styles/reveal.css";
+import { useInView } from "../utils/useInView";
 import { apiFetch } from "../utils/api";
 
 export default function Dashboard() {
 
   const navigate = useNavigate();
   const [newsletterMessage, setNewsletterMessage] = useState("");
+  const [benefitsRef, benefitsVisible] = useInView();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -76,7 +79,7 @@ export default function Dashboard() {
             className="explore-card"
             onClick={() => navigate("/recipes?type=breakfast")}
           >
-            <img src="/breakfast.jpg" alt="Breakfast" />
+            <img loading="lazy" decoding="async" src="/breakfast.jpg" alt="Breakfast" />
             <p>Breakfast</p>
           </div>
 
@@ -84,7 +87,7 @@ export default function Dashboard() {
             className="explore-card"
             onClick={() => navigate("/recipes?type=lunch")}
           >
-            <img src="/lunch.jpg" alt="Lunch" />
+            <img loading="lazy" decoding="async" src="/lunch.jpg" alt="Lunch" />
             <p>Lunch</p>
           </div>
 
@@ -92,7 +95,7 @@ export default function Dashboard() {
             className="explore-card"
             onClick={() => navigate("/recipes?type=dinner")}
           >
-            <img src="/dinner.jpg" alt="Dinner" />
+            <img loading="lazy" decoding="async" src="/dinner.jpg" alt="Dinner" />
             <p>Dinner</p>
           </div>
 
@@ -100,7 +103,7 @@ export default function Dashboard() {
             className="explore-card"
             onClick={() => navigate("/recipes?type=snacks")}
           >
-            <img src="/snacks.jpg" alt="Snacks" />
+            <img loading="lazy" decoding="async" src="/snacks.jpg" alt="Snacks" />
             <p>Snacks</p>
           </div>
 
@@ -110,13 +113,16 @@ export default function Dashboard() {
 
 
       {/* ================= BENEFITS ================= */}
-      <section className="benefits-section">
+      <section
+        ref={benefitsRef}
+        className={`benefits-section reveal-group ${benefitsVisible ? "is-visible" : ""}`}
+      >
 
-        <h2 className="section-title">Why Use Prep?</h2>
+        <h2 className="section-title reveal-item">Why Use Prep?</h2>
 
         <div className="benefits-container">
 
-          <div className="benefit-item">
+          <div className="benefit-item reveal-item" style={{ "--reveal-order": 1 }}>
             <span className="material-icons benefit-icon">
               calendar_today
             </span>
@@ -124,7 +130,7 @@ export default function Dashboard() {
             <p>Easily schedule your meals for the week.</p>
           </div>
 
-          <div className="benefit-item">
+          <div className="benefit-item reveal-item" style={{ "--reveal-order": 2 }}>
             <span className="material-icons benefit-icon">
               fitness_center
             </span>
@@ -132,7 +138,7 @@ export default function Dashboard() {
             <p>Choose nutritious recipes to stay on track.</p>
           </div>
 
-          <div className="benefit-item">
+          <div className="benefit-item reveal-item" style={{ "--reveal-order": 3 }}>
             <span className="material-icons benefit-icon">
               repeat
             </span>
@@ -140,7 +146,7 @@ export default function Dashboard() {
             <p>Build a routine with consistent meal prep.</p>
           </div>
 
-          <div className="benefit-item">
+          <div className="benefit-item reveal-item" style={{ "--reveal-order": 4 }}>
             <span className="material-icons benefit-icon">
               assignment
             </span>
@@ -266,7 +272,7 @@ export default function Dashboard() {
 
           <div className="footer-brand">
 
-            <img src="/logo.png" alt="Prep logo" className="footer-logo" />
+            <img loading="lazy" decoding="async" src="/logo.png" alt="Prep logo" className="footer-logo" />
 
             <p>
               Prep is built around thoughtful meal planning — helping you

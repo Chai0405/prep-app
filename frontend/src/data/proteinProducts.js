@@ -5,7 +5,7 @@ const proteinProducts = [
 
     name: "Chicken Breast Fillet",
 
-    image: "/pantry/chicken-breast.jpg",
+    image: "/pantry/chicken-breast.webp",
 
     price: 320,
 
@@ -265,7 +265,7 @@ const proteinProducts = [
 
   name: "Pork Sausages",
 
-  image: "/pantry/pork-sausage.avif",
+  image: "/pantry/pork-sausage.webp",
 
   price: 380,
 

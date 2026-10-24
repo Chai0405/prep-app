@@ -28,7 +28,7 @@ afterEach(() => {
 });
 
 describe("HeroSlider", () => {
-  it("starts on the first slide and changes every 8 seconds", () => {
+  it("starts on the first slide and changes after each slide duration", () => {
     renderSlider();
     expect(visibleTitle()).toBe(SLIDES[0].title);
 

@@ -185,7 +185,7 @@ const spiceProducts = [
 
     name: "Pink Himalayan Salt",
 
-    image: "/pantry/himalayan-salt.avif",
+    image: "/pantry/himalayan-salt.webp",
 
     price: 260,
 

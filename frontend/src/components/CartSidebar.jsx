@@ -62,7 +62,7 @@ const total = subtotal + deliveryFee;
               className="cart-item"
             >
 
-              <img
+              <img loading="lazy" decoding="async"
                 src={item.image}
                 alt={item.name}
               />

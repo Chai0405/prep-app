@@ -44,7 +44,7 @@ export default function MealSelectorModal({ onClose, onSelect }) {
               className="modal-recipe-card"
               onClick={() => handleSelect(recipe)}
             >
-              <img src={recipe.image} alt={recipe.title} />
+              <img loading="lazy" decoding="async" src={recipe.image} alt={recipe.title} />
 
               <h4>{recipe.title}</h4>
 

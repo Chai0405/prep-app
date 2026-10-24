@@ -50,7 +50,7 @@ const freshProduce = [
   {
     id: 4,
     name: "Broccoli",
-    image: "/pantry/broccoli.avif",
+    image: "/pantry/broccoli.webp",
     price: 95,
 
     tags: [
@@ -98,7 +98,7 @@ const freshProduce = [
 {
   id: 7,
   name: "Blueberries",
-  image: "/pantry/blueberries.avif",
+  image: "/pantry/blueberries.webp",
   price: 260,
 
   tags: [
@@ -146,7 +146,7 @@ const freshProduce = [
 {
   id: 10,
   name: "Oranges",
-  image: "/pantry/oranges.avif",
+  image: "/pantry/oranges.webp",
   price: 120,
 
   tags: [
@@ -210,7 +210,7 @@ const freshProduce = [
 {
   id: 14,
   name: "Sweet Corn",
-  image: "/pantry/sweet-corn.avif",
+  image: "/pantry/sweet-corn.webp",
   price: 90,
 
   tags: [
@@ -274,7 +274,7 @@ const freshProduce = [
 {
   id: 18,
   name: "Purple Cabbage",
-  image: "/pantry/purple-cabbage.avif",
+  image: "/pantry/purple-cabbage.webp",
   price: 130,
 
   tags: [
@@ -482,7 +482,7 @@ const freshProduce = [
 {
   id: 31,
   name: "Lime",
-  image: "/pantry/lime.avif",
+  image: "/pantry/lime.webp",
   price: 60,
 
   tags: [
@@ -498,7 +498,7 @@ const freshProduce = [
 {
   id: 32,
   name: "Sweet Potatoes",
-  image: "/pantry/sweet-potatoes.avif",
+  image: "/pantry/sweet-potatoes.webp",
   price: 90,
 
   tags: [
@@ -787,7 +787,7 @@ const freshProduce = [
 {
   id: 50,
   name: "Guava",
-  image: "/pantry/guava.avif",
+  image: "/pantry/guava.webp",
   price: 90,
 
   tags: [
@@ -851,7 +851,7 @@ const freshProduce = [
 {
   id: 54,
   name: "Peach",
-  image: "/pantry/peach.avif",
+  image: "/pantry/peach.webp",
   price: 260,
 
   tags: [
@@ -995,7 +995,7 @@ const freshProduce = [
 {
   id: 63,
   name: "Mustard Greens",
-  image: "/pantry/mustard-greens.avif",
+  image: "/pantry/mustard-greens.webp",
   price: 55,
 
   tags: [
@@ -1155,7 +1155,7 @@ const freshProduce = [
 {
   id: 74,
   name: "Mattu Gulla",
-  image: "/pantry/mattu-gulla.avif",
+  image: "/pantry/mattu-gulla.webp",
   price: 120,
 
   tags: [
@@ -1203,7 +1203,7 @@ const freshProduce = [
 {
   id: 77,
   name: "Pagila",
-  image: "/pantry/pagila.avif",
+  image: "/pantry/pagila.webp",
   price: 75,
 
   tags: [
@@ -1235,7 +1235,7 @@ const freshProduce = [
 {
   id: 79,
   name: "Ivy Gourd",
-  image: "/pantry/ivy-gourd.avif",
+  image: "/pantry/ivy-gourd.webp",
   price: 60,
 
   tags: [
@@ -1363,7 +1363,7 @@ const freshProduce = [
 {
   id: 87,
   name: "Ash Gourd",
-  image: "/pantry/ash-gourd.avif",
+  image: "/pantry/ash-gourd.webp",
   price: 75,
 
   tags: [
@@ -1491,7 +1491,7 @@ const freshProduce = [
 {
   id: 73,
   name: "Ginger",
-  image: "/pantry/ginger.avif",
+  image: "/pantry/ginger.webp",
   price: 90,
 
   tags: [

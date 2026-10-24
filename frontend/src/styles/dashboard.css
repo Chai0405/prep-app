@@ -445,7 +445,7 @@
 .trial-section {
   position: relative;
   padding: 60px 20px;
-  background: url("/trial-bg.avif") center / cover no-repeat;
+  background: url("/trial-bg.webp") center / cover no-repeat;
   display: flex;
   justify-content: center;
   text-align: center;
