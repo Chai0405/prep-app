@@ -24,6 +24,28 @@ body,
 }
 
 /* ======================================================
+   MOBILE: KEEP THE PAGE STILL
+====================================================== */
+
+html {
+  /* no accidental double-tap zoom on buttons and links */
+  touch-action: manipulation;
+  /* don't enlarge text when the phone is rotated */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iPhones zoom into any form field whose text is under 16px,
+   and stay zoomed. 16px on small screens stops that. */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ======================================================
    GLOBAL IMAGES
 ====================================================== */
 
