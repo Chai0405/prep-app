@@ -1489,7 +1489,7 @@ const freshProduce = [
 },
 
 {
-  id: 42,
+  id: 73,
   name: "Ginger",
   image: "/pantry/ginger.avif",
   price: 90,

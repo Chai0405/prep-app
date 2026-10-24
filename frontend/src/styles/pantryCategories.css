@@ -1,0 +1,352 @@
+/* ===== bakery ===== */
+.bakery-hero {
+  background:
+    url("/hero/bakery-hero.jpg")
+    center / cover no-repeat;
+}
+
+.category-filters button.active-filter {
+  background: white;
+
+  color: black;
+
+  border-color: white;
+}
+
+/* ===== protein ===== */
+.protein-hero {
+  background:
+    url("/hero/protein-hero.jpg")
+    center / cover no-repeat;
+}
+
+/* ===== seafood ===== */
+.seafood-hero {
+  background:
+    url("/hero/seafood-hero.jpg")
+    center / cover no-repeat;
+}
+
+.seafood-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,30,42,0.24),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.seafood-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,200,255,0.18);
+}
+
+.seafood-grid .product-price {
+  color: #9ed8ff;
+}
+
+/* ===== spices ===== */
+.spices-hero {
+  background:
+    url("/hero/spices-hero.webp")
+    center / cover no-repeat;
+}
+
+.spices-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(52,32,12,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.spices-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,180,90,0.18);
+}
+
+.spices-grid .product-price {
+  color: #f2c27b;
+}
+
+/* ===== dairy ===== */
+.dairy-hero {
+  background:
+    url("/hero/dairy-hero.jpeg")
+    center / cover no-repeat;
+}
+
+.dairy-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.06),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.dairy-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,255,255,0.16);
+}
+
+.dairy-grid .product-price {
+  color: #f3f3f3;
+}
+
+/* ===== oils ===== */
+.oils-hero {
+  background:
+    url("/hero/oils-hero.jpg")
+    center / cover no-repeat;
+}
+
+.oils-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(58,42,12,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.oils-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,210,120,0.16);
+}
+
+.oils-grid .product-price {
+  color: #f2d18a;
+}
+
+/* ===== grains ===== */
+.grains-hero {
+  background:
+    url("/hero/grains-hero.webp")
+    center / cover no-repeat;
+}
+
+.grains-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(42,34,18,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.grains-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(214,184,120,0.18);
+}
+
+.grains-grid .product-price {
+  color: #e6c98a;
+}
+
+/* ===== dryfruits ===== */
+.dryfruits-hero {
+  background:
+    url("/hero/dryfruits-hero.webp")
+    center / cover no-repeat;
+}
+
+.dryfruits-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(64,42,18,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.dryfruits-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(212,176,120,0.18);
+}
+
+.dryfruits-grid .product-price {
+  color: #f0cb8b;
+}
+
+/* ===== beverages ===== */
+.beverages-hero {
+  background:
+    url("/hero/beverages-hero.webp")
+    center / cover no-repeat;
+}
+
+.beverages-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,42,34,0.2),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.beverages-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,255,210,0.16);
+}
+
+.beverages-grid .product-price {
+  color: #98f2d0;
+}
+
+/* ===== sauces ===== */
+.sauces-hero {
+  background:
+    url("/hero/sauces-hero.webp")
+    center / cover no-repeat;
+}
+
+.sauces-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(58,24,18,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.sauces-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,140,120,0.18);
+}
+
+.sauces-grid .product-price {
+  color: #f2a28a;
+}
+
+/* ===== herbs ===== */
+.herbs-hero {
+  background:
+    url("/hero/herbs-hero.jpg")
+    center / cover no-repeat;
+}
+
+.herbs-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,52,28,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.herbs-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,255,160,0.18);
+}
+
+.herbs-grid .product-price {
+  color: #9ef2b5;
+}
+
+/* ===== teaCoffee ===== */
+.teaCoffee-hero {
+  background:
+    url("/hero/tea-coffee-hero.avif")
+    center / cover no-repeat;
+}
+
+.teaCoffee-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(48,28,18,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.teaCoffee-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(210,170,120,0.18);
+}
+
+.teaCoffee-grid .product-price {
+  color: #e9c18c;
+}
+
+/* ===== organic ===== */
+.organic-hero {
+  background:
+    url("/hero/organic-hero.avif")
+    center / cover no-repeat;
+}
+
+.organic-grid .product-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,48,24,0.22),
+      rgba(0,0,0,0.92)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.organic-grid .product-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(120,220,140,0.18);
+}
+
+.organic-grid .product-price {
+  color: #9ce2a8;
+}
+

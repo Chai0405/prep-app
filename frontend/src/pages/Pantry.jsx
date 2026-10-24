@@ -63,13 +63,13 @@ const Pantry = () => {
   </Link>
 
   <Link
-  to="/pantry/protien-meat"
+  to="/pantry/protein-meat"
   className="pantry-link"
   >
   <div className="pantry-card">
     <img
       src="/pantry/pantry-protien-meat.webp"
-      alt="Healthy Bowls"
+      alt="Protein & Meat"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -88,7 +88,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-seafood.webp"
-      alt="Protein"
+      alt="Seafood"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -107,7 +107,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-spices.webp"
-      alt="Pantry"
+      alt="Spices & Seasonings"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -126,7 +126,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-dairy-eggs.jpg"
-      alt="Protein"
+      alt="Dairy & Eggs"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -145,7 +145,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-oils.jpg"
-      alt="Protein"
+      alt="Oils"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -164,7 +164,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-pulses-grains.jpg"
-      alt="Protein"
+      alt="Pulses & Grains"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -183,7 +183,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-dry-fruits.jpg"
-      alt="Protein"
+      alt="Dry Fruits"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -202,7 +202,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-beverages.jpeg"
-      alt="Protein"
+      alt="Beverages"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -221,7 +221,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-jams-sauces.jpeg"
-      alt="Protein"
+      alt="Jams & Sauces"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -240,7 +240,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-herbs.jpg"
-      alt="Protein"
+      alt="Herbs"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -259,7 +259,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-tea-coffee.jpg"
-      alt="Protein"
+      alt="Tea & Coffee"
     />
 
     <div className="pantry-card-overlay"></div>
@@ -278,7 +278,7 @@ const Pantry = () => {
   <div className="pantry-card">
     <img
       src="/pantry/pantry-organic.jpg"
-      alt="Protein"
+      alt="Organic Picks"
     />
 
     <div className="pantry-card-overlay"></div>

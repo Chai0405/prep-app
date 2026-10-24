@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../utils/api";
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -17,11 +18,9 @@ export default function Auth() {
     setError("");
 
     try {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+  const res = await apiFetch("/api/auth/login", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email, password }),
-  credentials: "include"
+  body: { email, password }
 });
 
 const data = await res.json();
@@ -94,14 +93,15 @@ navigate("/dashboard", { replace: true });
 
         {/* SOCIAL LOGIN */}
         <div className="auth-extra">
-          <button className="google-btn" type="button">
-            <img src="/google.png" alt="Google" />
-            Sign in with Google
+          {/* Social sign-in is not implemented yet; kept visible but disabled */}
+          <button className="google-btn" type="button" disabled>
+            <img src="/google.png" alt="" />
+            Google sign-in (coming soon)
           </button>
 
-          <button className="facebook-btn" type="button">
-            <img src="/facebook.png" alt="Facebook" />
-            Sign in with Facebook
+          <button className="facebook-btn" type="button" disabled>
+            <img src="/facebook.png" alt="" />
+            Facebook sign-in (coming soon)
           </button>
 
           <p className="switch-auth">

@@ -1,11 +1,9 @@
-import { useParams } from "react-router-dom";
 import freshProduce from "../data/freshProduce";
 import PantryProductCard from "../components/ProductCard";
 import CartSidebar from "../components/CartSidebar";
 import { useState } from "react";
 
 const CategoryProducts = () => {
-  const { category } = useParams();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
 

@@ -1,0 +1,48 @@
+.legal-page {
+  min-height: 70vh;
+  padding: 140px 16px 80px;
+  background: #000;
+  color: #ddd;
+}
+
+.legal-content {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.legal-content h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.legal-content h2 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 28px 0 8px;
+}
+
+.legal-content ul {
+  padding-left: 20px;
+}
+
+.legal-placeholder {
+  border: 1px solid rgba(255, 200, 100, 0.45);
+  color: #ffd99a;
+  padding: 12px 14px;
+  margin-bottom: 24px;
+}
+
+.legal-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: inherit;
+}

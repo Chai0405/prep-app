@@ -85,9 +85,7 @@ text-align:center;
 `;
 return mailTemplate(
 "Password Updated",
-message,
-"Go to Login",
-`${process.env.CLIENT_URL}/login`
+message
 );
 
 };

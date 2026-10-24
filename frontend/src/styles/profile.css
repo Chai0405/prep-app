@@ -370,3 +370,14 @@
   }
 
 }
+.delete-warning{
+  color:#bdbdbd;
+  font-size:14px;
+  line-height:1.5;
+  margin:0 0 6px;
+}
+
+.modal-actions .danger-confirm:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}

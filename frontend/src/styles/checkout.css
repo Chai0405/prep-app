@@ -1111,3 +1111,16 @@ select:focus {
     width: 100%;
   }
 }
+.checkout-notice {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cfcfcf;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.place-order-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

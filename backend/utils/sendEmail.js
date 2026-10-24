@@ -4,9 +4,18 @@ dotenv.config();
 
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Created on first use, so a missing key disables email instead of
+// crashing the whole server at startup
+let resend;
 
 const sendEmail = async (to, subject, html) => {
+
+if (!process.env.RESEND_API_KEY) {
+console.error("Email not sent: RESEND_API_KEY is not set");
+return;
+}
+
+resend ??= new Resend(process.env.RESEND_API_KEY);
 
 try {
 

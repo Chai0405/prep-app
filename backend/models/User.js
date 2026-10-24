@@ -35,7 +35,13 @@ default:false
 },
     verifyToken:String,
     resetToken:String,
-    resetTokenExpire:Date
+    resetTokenExpire:Date,
+
+    // Bumped on password change/reset; tokens carrying an older version are rejected
+    tokenVersion:{
+      type:Number,
+      default:0
+    }
   },
   { timestamps: true }
 );

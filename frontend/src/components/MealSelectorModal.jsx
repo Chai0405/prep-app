@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { featuredRecipes } from "../data/featuredRecipes";
+import { apiFetch } from "../utils/api";
 
 export default function MealSelectorModal({ onClose, onSelect }) {
 
@@ -8,7 +9,7 @@ export default function MealSelectorModal({ onClose, onSelect }) {
   const handleSelect = async (recipe) => {
 
   // get real recipes from backend
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/recipes`);
+  const res = await apiFetch("/api/recipes");
   const recipes = await res.json();
 
   const realRecipe = recipes.find(

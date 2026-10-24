@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../utils/api";
 
 const DAYS = [
   "Monday",
@@ -33,6 +35,8 @@ const getWeekStart = () => {
 
 export default function AddToPlannerModal({ recipe, onClose }) {
 
+  const navigate = useNavigate();
+
   const [day,setDay] = useState("Monday");
   const [meal,setMeal] = useState("Dinner");
 
@@ -44,16 +48,23 @@ export default function AddToPlannerModal({ recipe, onClose }) {
 
   const handleAdd = async () => {
 
+    if (!localStorage.getItem("token")) {
+      navigate("/auth");
+      return;
+    }
+
     const weekStart = getWeekStart();
 
-    const plannerRes = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/planner?weekStart=${weekStart}`,
-      { credentials:"include" }
-    );
+    try {
+
+    const plannerRes = await apiFetch(`/api/planner?weekStart=${weekStart}`);
+
+    if (plannerRes.status === 401) {
+      navigate("/auth");
+      return;
+    }
 
     const plannerData = await plannerRes.json();
-
-    console.log("Planner API response:", plannerData);
 
     const meals = plannerData?.meals || {
   monday:{},
@@ -75,26 +86,25 @@ if(!updatedMeals[dayMap[day]][meal.toLowerCase()]){
   updatedMeals[dayMap[day]][meal.toLowerCase()] = [];
 }
 
-updatedMeals[dayMap[day]][meal.toLowerCase()].push({
-  _id: recipe._id,
-  title: recipe.title,
-  image: recipe.image,
-  calories: recipe.calories
+const slot = updatedMeals[dayMap[day]][meal.toLowerCase()];
+
+if (!slot.some(m => (m._id || m) === recipe._id)) {
+  slot.push({
+    _id: recipe._id,
+    title: recipe.title,
+    image: recipe.image,
+    calories: recipe.calories
+  });
+}
+
+await apiFetch("/api/planner",{
+method:"POST",
+body:{ weekStart, meals:updatedMeals }
 });
 
-    const token = localStorage.getItem("token");
-
-await fetch(`${import.meta.env.VITE_API_URL}/api/planner`,{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-Authorization:`Bearer ${token}`
-},
-      body:JSON.stringify({
-        weekStart,
-        meals:updatedMeals
-      })
-    });
+    } catch (err) {
+      console.error("Add to planner failed:", err);
+    }
 
     onClose(true);
   };

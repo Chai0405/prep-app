@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import "../styles/reset.css";
+import { apiFetch } from "../utils/api";
 
 export default function ResetPassword(){
 
@@ -16,10 +16,17 @@ e.preventDefault();
 
 try{
 
-await axios.post(
-`${import.meta.env.VITE_API_URL}/api/auth/reset-password/${token}`,
-{password}
-);
+const res = await apiFetch(`/api/auth/reset-password/${token}`,{
+method:"POST",
+body:{ password }
+});
+
+const data = await res.json();
+
+if(!res.ok){
+setMessage(data.message || "Something went wrong. Please try again.");
+return;
+}
 
 setMessage("Password updated successfully");
 

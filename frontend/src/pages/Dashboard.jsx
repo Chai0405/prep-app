@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
+import { apiFetch } from "../utils/api";
 
 export default function Dashboard() {
 
@@ -188,14 +189,10 @@ export default function Dashboard() {
 
               try {
 
-                const res = await fetch(
-                  `${import.meta.env.VITE_API_URL}/api/newsletter`,
-                  {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email })
-                  }
-                );
+                const res = await apiFetch("/api/newsletter", {
+                  method: "POST",
+                  body: { email }
+                });
 
                 const data = await res.json();
 

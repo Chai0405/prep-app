@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.post("/", async (req,res)=>{
 
-const { email } = req.body;
+try{
+
+const email = req.body.email?.trim().toLowerCase();
 
 if(!email)
 return res.status(400).json({message:"Email required"});
@@ -24,6 +26,13 @@ const html = newsletterEmail();
 await sendEmail(email,"Welcome to PREP",html);
 
 res.json({message:"Welcome. Expect seasonal notes and curated ideas."});
+
+}catch(err){
+
+console.error("Newsletter subscribe error:",err);
+res.status(500).json({message:"Subscription failed"});
+
+}
 
 });
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "../styles/forgotPassword.css";
+import { apiFetch } from "../utils/api";
 
 export default function ForgotPassword() {
 
@@ -13,15 +13,17 @@ export default function ForgotPassword() {
 
     try{
 
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/forgot-password`,
-        { email }
-      );
+      const res = await apiFetch("/api/auth/forgot-password",{
+        method:"POST",
+        body:{ email }
+      });
+
+      if (!res.ok) throw new Error("Request failed");
 
       setMessage("A reset link has been sent to your email. Kindly check");
 
     }catch(err){
-console.err("Trial error",err)
+console.error("Forgot password error",err)
       setMessage("Something went wrong. Please try again.");
 
     }

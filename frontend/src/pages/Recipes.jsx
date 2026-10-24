@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import LegalFooter from "../components/LegalFooter";
 import "../styles/recipes.css";
+import { apiFetch } from "../utils/api";
 
 export default function Recipes() {
 
@@ -15,7 +15,7 @@ const [recipes,setRecipes] = useState([]);
 
 useEffect(()=>{
 
-fetch(`${import.meta.env.VITE_API_URL}/api/recipes`)
+apiFetch("/api/recipes")
 .then(res=>res.json())
 .then(data=>setRecipes(data))
 .catch(err=>console.error(err));

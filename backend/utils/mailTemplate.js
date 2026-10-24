@@ -33,6 +33,31 @@ ${title}
 
 ${message}
 
+${buttonLink ? `
+<table cellpadding="0" cellspacing="0" style="margin:28px auto 0 auto">
+<tr>
+<td align="center">
+<a href="${buttonLink}"
+style="
+display:inline-block;
+padding:16px 42px;
+color:#ffffff;
+text-decoration:none;
+font-weight:500;
+border:1px solid #ffffff;
+background:#000000;
+font-family:Inter, Arial, sans-serif;
+">
+${buttonText}
+</a>
+</td>
+</tr>
+</table>
+<p style="font-size:12px;color:#8a8a8a;margin-top:18px;word-break:break-all;">
+Or paste this link into your browser:<br>${buttonLink}
+</p>
+` : ""}
+
 <!-- divider -->
 
 <hr style="

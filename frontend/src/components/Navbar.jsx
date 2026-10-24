@@ -1,7 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { ShoppingCart  } from "lucide-react";
 import CartSidebar from "../components/CartSidebar";
+import { apiFetch } from "../utils/api";
 
 export default function Navbar() {
 
@@ -9,33 +11,16 @@ export default function Navbar() {
 
   const [user, setUser] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [menuOpen,setMenuOpen] = useState(false);   // NEW
+  const [menuOpen,setMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useSelector((state) => state.cart.cartItems.length);
 
   useEffect(() => {
 
-  const cartItems =
-    JSON.parse(
-      localStorage.getItem("cartItems")
-    ) || [];
+    if (!localStorage.getItem("token")) return;
 
-  setCartCount(cartItems.length);
-
-}, []);
-
-  useEffect(() => {
-
-    const token = localStorage.getItem("token");
-
-    if (!token) return;
-
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => res.json())
+    apiFetch("/api/auth/me")
+      .then(res => (res.ok ? res.json() : null))
       .then(data => setUser(data))
       .catch(() => setUser(null));
 
@@ -46,20 +31,18 @@ export default function Navbar() {
 
     try {
 
-      await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
-        method: "POST",
-        credentials: "include"
-      });
-
-      localStorage.removeItem("token");
-
-      navigate("/auth");
+      await apiFetch("/api/auth/logout", { method: "POST" });
 
     } catch (err) {
 
       console.error("Logout error:", err);
 
     }
+
+    // Sign out locally even if the server call failed
+    localStorage.removeItem("token");
+
+    navigate("/auth");
 
   };
 

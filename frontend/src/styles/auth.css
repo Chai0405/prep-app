@@ -200,6 +200,13 @@
   border-color: #555;
 }
 
+.google-btn:disabled,
+.facebook-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: #333;
+}
+
 /* =========================
    SWITCH AUTH TEXT
 ========================= */

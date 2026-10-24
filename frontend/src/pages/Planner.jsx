@@ -1,8 +1,8 @@
-// import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MealSelectorModal from "../components/MealSelectorModal";
 import "../styles/planner.css";
+import { apiFetch } from "../utils/api";
 
 const DAYS = [
   "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
@@ -31,8 +31,6 @@ const getWeekStart = () => {
 
 export default function Planner(){
 
-// const navigate = useNavigate();
-
 const [planner,setPlanner] = useState({});
 const [activeDay,setActiveDay] = useState("Monday");
 const [activeMeal,setActiveMeal] = useState("Breakfast");
@@ -45,13 +43,7 @@ const location = useLocation();
 
 useEffect(()=>{
 
-const token = localStorage.getItem("token");
-
-fetch(`${import.meta.env.VITE_API_URL}/api/planner?weekStart=${weekStart}`,{
-headers:{
-Authorization:`Bearer ${token}`
-}
-})
+apiFetch(`/api/planner?weekStart=${weekStart}`)
 .then(res=>res.json())
 .then(data=>{
 
@@ -74,7 +66,8 @@ setPlanner({
 setPlanner(emptyPlanner);
 }
 
-});
+})
+.catch(err=>console.error("Planner fetch error:",err));
 
 },[weekStart, location.pathname]);
 
@@ -133,17 +126,21 @@ recipe
 
 setPlanner(updatedPlanner);
 
-await fetch(`${import.meta.env.VITE_API_URL}/api/planner`,{
-method:"POST",
-credentials:"include",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-weekStart,
-meals:convertPlannerToIds(updatedPlanner)
-})
-});
+await savePlanner(updatedPlanner);
 
 };
+
+/* ================= PERSIST PLANNER ================= */
+
+const savePlanner = (updatedPlanner)=>
+apiFetch("/api/planner",{
+method:"POST",
+body:{
+weekStart,
+meals:convertPlannerToIds(updatedPlanner)
+}
+})
+.catch(err=>console.error("Planner save error:",err));
 
 /* ================= REMOVE MEAL ================= */
 
@@ -162,15 +159,7 @@ const updatedPlanner = {
 
 setPlanner(updatedPlanner);
 
-await fetch(`${import.meta.env.VITE_API_URL}/api/planner`,{
-method:"POST",
-credentials:"include",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-weekStart,
-meals:convertPlannerToIds(updatedPlanner)
-})
-});
+await savePlanner(updatedPlanner);
 
 };
 

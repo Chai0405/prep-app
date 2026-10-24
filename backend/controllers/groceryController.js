@@ -26,10 +26,14 @@ export const updateGrocery = async (req, res) => {
   try {
     const { items } = req.body;
 
+    if (!Array.isArray(items)) {
+      return res.status(400).json({ message: "Items must be an array" });
+    }
+
     const grocery = await Grocery.findOneAndUpdate(
       { user: req.user },
       { items },
-      { returnDocument: "after" }
+      { upsert: true, returnDocument: "after" }
     );
 
     res.json({ items: grocery.items });

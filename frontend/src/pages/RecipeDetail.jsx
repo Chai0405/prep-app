@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddToPlannerModal from "../components/AddToPlannerModal";
 import "../styles/recipeDetail.css"
+import { apiFetch } from "../utils/api";
 
 export default function RecipeDetail() {
 
@@ -9,53 +10,33 @@ const { id } = useParams();
 const navigate = useNavigate();
 
 const [recipe,setRecipe] = useState(null);
-// const [user,setUser] = useState(null);
+const [notFound,setNotFound] = useState(false);
 const [showPlannerModal,setShowPlannerModal] = useState(false);
-const [showLogoutConfirm,setShowLogoutConfirm] = useState(false);
-
-/* ================= FETCH USER ================= */
-
-// useEffect(()=>{
-
-// fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
-// credentials:"include"
-// })
-// .then(res=>res.json())
-// .then(setUser)
-// .catch(()=>setUser(null));
-
-// },[]);
-
 
 /* ================= FETCH RECIPE ================= */
 
 useEffect(()=>{
 
-fetch(`${import.meta.env.VITE_API_URL}/api/recipes/${id}`)
-.then(res=>res.json())
-.then(setRecipe);
+apiFetch(`/api/recipes/${id}`)
+.then(res=>{
+if(!res.ok) throw new Error("Recipe not found");
+return res.json();
+})
+.then(setRecipe)
+.catch(()=>setNotFound(true));
 
 },[id]);
 
 
 /* ================= LOADING ================= */
 
+if(notFound){
+return <div className="loading-state">Recipe not found.</div>;
+}
+
 if(!recipe){
 return <div className="loading-state">Loading recipe...</div>;
 }
-
-/* =================== LOGOUT ================ */
-const handleLogout = async()=>{
-
-await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`,{
-method:"POST",
-credentials:"include"
-});
-
-navigate("/auth");
-
-};
-
 
 return(
 
@@ -193,37 +174,7 @@ onClose={()=>setShowPlannerModal(false)}
 
 )}
 
-{showLogoutConfirm && (
 
-<div className="logout-modal-overlay">
-
-<div className="logout-modal">
-
-<p>Are you sure you want to logout?</p>
-
-<div className="logout-actions">
-
-<button
-className="cancel-btn"
-onClick={()=>setShowLogoutConfirm(false)}
->
-Cancel
-</button>
-
-<button
-className="confirm-btn"
-onClick={handleLogout}
->
-Sign out
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-)}
 
 
 </div>

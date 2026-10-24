@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { apiFetch } from "../utils/api";
 
 export default function VerifyEmail() {
 
@@ -14,7 +14,9 @@ export default function VerifyEmail() {
     const verifyEmail = async () => {
       try {
 
-        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/verify-email/${token}`);
+        const res = await apiFetch(`/api/auth/verify-email/${token}`);
+
+        if (!res.ok) throw new Error("Verification failed");
 
         setStatus("success");
 

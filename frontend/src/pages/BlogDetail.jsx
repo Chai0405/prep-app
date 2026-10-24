@@ -231,7 +231,7 @@ export default function BlogDetail() {
       image: "/blogs/hidden-price.avif",
       author: {
       name: "Samantha Schnur",
-      image: "/authors/samantha-webp"
+      image: "/authors/samantha.webp"
     },
       content: `
         <p>
@@ -254,7 +254,7 @@ export default function BlogDetail() {
 
     "diet-fails": {
       title: "Why “Eating Healthy” Fails Without Structure",
-      image: "/blogs/blogs/diet-fails.jpg",
+      image: "/blogs/diet-fails.jpg",
       author: {
       name: "Ella Mills",
       image: "/authors/ella-mills.jpg"

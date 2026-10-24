@@ -33,10 +33,6 @@ cleanedMeals[day][mealType] =
 
 /* ---------- SAVE PLANNER ---------- */
 
-console.log(req.body);
-console.log(cleanedMeals);
-console.log(planner);
-
 const planner = await Planner.findOneAndUpdate(
 {user:userId,weekStart},
 {user:userId,weekStart,meals:cleanedMeals},
@@ -45,25 +41,18 @@ const planner = await Planner.findOneAndUpdate(
 
 /* ---------- BUILD GROCERY ---------- */
 
+const recipeIds = Object.values(cleanedMeals)
+.flatMap(dayMeals => Object.values(dayMeals).flat());
+
+const recipes = await Recipe.find({_id:{$in:recipeIds}}).select("ingredients");
+
 const ingredientSet = new Set();
 
-for(const dayMeals of Object.values(cleanedMeals)){
-
-for(const mealIds of Object.values(dayMeals)){
-
-for(const id of mealIds){
-
-const recipe = await Recipe.findById(id);
-
-recipe?.ingredients?.forEach(i=>{
+recipes.forEach(recipe=>{
+recipe.ingredients?.forEach(i=>{
 ingredientSet.add(i.toLowerCase().trim());
 });
-
-}
-
-}
-
-}
+});
 
 let grocery = await Grocery.findOne({user:userId});
 

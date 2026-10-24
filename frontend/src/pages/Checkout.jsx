@@ -1,17 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  clearCart,
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
 } from "../redux/features/cart/cartSlice";
 
-import { useNavigate } from "react-router-dom";
-
 import { useState } from "react";
-
-import { Banknote } from "lucide-react";
 
 import "../styles/checkout.css";
 
@@ -40,13 +35,6 @@ const Checkout = () => {
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-
-  const [isProcessing, setIsProcessing] =
-    useState(false);
-
-  const [orderSuccess, setOrderSuccess] =
-    useState(false);
 
     const savedAddresses = [
 
@@ -128,85 +116,9 @@ const [formData, setFormData] =
   });
 };
 
-  const handlePlaceOrder = () => {
-
-  const options = {
-
-    key: "rzp_test_StsMTCaoexuUFh",
-
-    amount: total * 100,
-
-    currency: "INR",
-
-    name: "PREP",
-
-    description: "Premium Grocery Checkout",
-
-    image: "/logo/prep-logo.png",
-
-    handler: function () {
-
-      setOrderSuccess(true);
-
-      dispatch(clearCart());
-
-      setTimeout(() => {
-
-        navigate("/pantry");
-
-      }, 2500);
-    },
-
-    prefill: {
-
-      name: "Chaithra",
-
-      email: "chaithra@example.com",
-
-      contact: "9999999999",
-    },
-
-    theme: {
-      color: "#000000",
-    },
-  };
-
-  const razorpay =
-    new window.Razorpay(options);
-
-  razorpay.open();
-};
-
   return (
 
     <div className="checkout-page">
-
-      {
-        orderSuccess && (
-
-          <div className="order-success-overlay">
-
-            <div className="order-success-box">
-
-              <div className="success-icon">
-                ✓
-              </div>
-
-              <h2>
-                Order Placed Successfully
-              </h2>
-
-              <p>
-                Your essentials are being
-                prepared for delivery.
-              </p>
-
-            </div>
-
-          </div>
-
-        )
-      }
 
       {/* HEADER */}
 
@@ -619,17 +531,18 @@ const [formData, setFormData] =
 
           </div>
 
+          {/* Online payment is not implemented yet: never show a fake "order placed" */}
+          <p id="checkout-notice" className="checkout-notice" role="status">
+            Online payment isn't available yet, so orders can't be placed.
+            Your cart is saved and you have not been charged.
+          </p>
+
           <button
             className="place-order-btn"
-            onClick={handlePlaceOrder}
+            disabled
+            aria-describedby="checkout-notice"
           >
-
-            {
-              isProcessing
-                ? "Processing..."
-                : "Place Order"
-            }
-
+            Payments coming soon
           </button>
 
         </div>

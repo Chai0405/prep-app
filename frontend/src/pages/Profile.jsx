@@ -1,14 +1,20 @@
-/* eslint-env node */
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Toast from "../components/Toast";
 import "../styles/profile.css";
+import { apiFetch } from "../utils/api";
+import { checkAvatarFile, resizeAvatar } from "../utils/avatar";
 
 export default function Profile() {
 
   const [editMode, setEditMode] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [toast,setToast] = useState("");
+  const [showDelete, setShowDelete] = useState(false);
+  const [deleteData, setDeleteData] = useState({ password: "", confirm: "" });
+  const [deleting, setDeleting] = useState(false);
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
 
@@ -25,37 +31,40 @@ export default function Profile() {
   const handleAvatarUpload = async (e) => {
 
     const file = e.target.files[0];
+    e.target.value = ""; // allow picking the same file again after an error
     if (!file) return;
 
-    const reader = new FileReader();
+    const fileError = checkAvatarFile(file);
 
-    reader.onloadend = async () => {
+    if (fileError) {
+      setToast(fileError);
+      return;
+    }
 
-      const avatarBase64 = reader.result;
+    try {
 
-      try {
+      const avatar = await resizeAvatar(file);
 
-        const token = localStorage.getItem("token");
+      const res = await apiFetch("/api/user/avatar",{
+        method:"PUT",
+        body:{ avatar }
+      });
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/avatar`,{
-          method:"PUT",
-          headers:{
-            "Content-Type":"application/json",
-            Authorization:`Bearer ${token}`
-          },
-          body: JSON.stringify({ avatar: avatarBase64 })
-        });
+      const data = await res.json().catch(() => ({}));
 
-        const data = await res.json();
-        setUser(data);
-
-      } catch (err) {
-        console.error("Avatar upload failed", err);
+      if (!res.ok) {
+        setToast(data.message || "Avatar upload failed");
+        return;
       }
 
-    };
+      setUser(data);
+      setToast("Avatar updated");
 
-    reader.readAsDataURL(file);
+    } catch (err) {
+      console.error("Avatar upload failed", err);
+      setToast(err.message || "Avatar upload failed");
+    }
+
   };
 
   const handlePasswordChange = (e) => {
@@ -74,18 +83,12 @@ export default function Profile() {
 
     try {
 
-      const token = localStorage.getItem("token");
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password`,{
+      const res = await apiFetch("/api/auth/password",{
         method:"PUT",
-        headers:{
-          "Content-Type":"application/json",
-          Authorization:`Bearer ${token}`
-        },
-        body: JSON.stringify({
+        body:{
           current: passwordData.current,
           newPassword: passwordData.newPassword
-        })
+        }
       });
 
       const data = await res.json();
@@ -94,6 +97,9 @@ export default function Profile() {
         setToast(data.message);
         return;
       }
+
+      // Other sessions are signed out; keep this one with the fresh token
+      if (data.token) localStorage.setItem("token", data.token);
 
       setToast("Password updated successfully");
 
@@ -115,18 +121,17 @@ export default function Profile() {
 
     try {
 
-      const token = localStorage.getItem("token");
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`,{
+      const res = await apiFetch("/api/user/profile",{
         method:"PUT",
-        headers:{
-          "Content-Type":"application/json",
-          Authorization:`Bearer ${token}`
-        },
-        body: JSON.stringify(user)
+        body:{ name: user.name, email: user.email }
       });
 
       const data = await res.json();
+
+      if (!res.ok) {
+        setToast(data.message || "Update failed");
+        return;
+      }
 
       setUser(data);
       setEditMode(false);
@@ -137,19 +142,48 @@ export default function Profile() {
 
   };
 
+  const closeDelete = () => {
+    setShowDelete(false);
+    setDeleteData({ password: "", confirm: "" });
+  };
+
+  const handleDeleteAccount = async () => {
+
+    setDeleting(true);
+
+    try {
+
+      const res = await apiFetch("/api/user", {
+        method: "DELETE",
+        body: deleteData
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setToast(data.message || "Account deletion failed");
+        return;
+      }
+
+      localStorage.removeItem("token");
+      navigate("/", { replace: true });
+
+    } catch (err) {
+      console.error(err);
+      setToast("Account deletion failed");
+    } finally {
+      setDeleting(false);
+    }
+
+  };
+
   useEffect(() => {
 
     const fetchUser = async () => {
 
       try {
 
-        const token = localStorage.getItem("token");
-
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
-          headers:{
-            Authorization:`Bearer ${token}`
-          }
-        });
+        const res = await apiFetch("/api/auth/me");
 
         if(!res.ok) throw new Error("Not authenticated");
 
@@ -188,7 +222,7 @@ export default function Profile() {
             <div className="avatar-preview">
 
               {user?.avatar ? (
-                <img src={user?.avatar || "/default-avatar.png"} alt="Avatar"/>
+                <img src={user.avatar} alt="Avatar"/>
               ) : (
                 <span>{user?.name?.slice(0,2).toUpperCase()}</span>
               )}
@@ -197,7 +231,7 @@ export default function Profile() {
 
             <label className="avatar-upload">
               Change Avatar
-              <input type="file" accept="image/*" onChange={handleAvatarUpload} hidden/>
+              <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleAvatarUpload} hidden/>
             </label>
 
           </div>
@@ -277,7 +311,12 @@ export default function Profile() {
 
         <div className="profile-section-card danger">
           <h2>Danger Zone</h2>
-          <button className="danger-btn">Delete Account</button>
+          <button
+            className="danger-btn"
+            onClick={()=>setShowDelete(true)}
+          >
+            Delete Account
+          </button>
         </div>
 
       </section>
@@ -325,6 +364,62 @@ export default function Profile() {
                 onClick={handlePasswordUpdate}
               >
                 Update
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {showDelete && (
+
+        <div className="password-modal">
+
+          <div
+            className="password-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-account-title"
+          >
+
+            <h3 id="delete-account-title">Delete Account</h3>
+
+            <p className="delete-warning">
+              This permanently deletes your account, meal plans, grocery
+              list and newsletter subscription. This cannot be undone.
+            </p>
+
+            <input
+              type="password"
+              placeholder="Current password"
+              aria-label="Current password"
+              autoComplete="current-password"
+              value={deleteData.password}
+              onChange={(e)=>setDeleteData({ ...deleteData, password: e.target.value })}
+            />
+
+            <input
+              placeholder='Type DELETE to confirm'
+              aria-label="Type DELETE to confirm"
+              value={deleteData.confirm}
+              onChange={(e)=>setDeleteData({ ...deleteData, confirm: e.target.value })}
+            />
+
+            <div className="modal-actions">
+
+              <button onClick={closeDelete}>
+                Cancel
+              </button>
+
+              <button
+                className="save danger-confirm"
+                onClick={handleDeleteAccount}
+                disabled={deleting || deleteData.confirm !== "DELETE" || !deleteData.password}
+              >
+                {deleting ? "Deleting..." : "Delete permanently"}
               </button>
 
             </div>

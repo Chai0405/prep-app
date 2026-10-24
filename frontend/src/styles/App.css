@@ -105,3 +105,48 @@ img {
     right: 5%;
   }
 }
+/* ===== PRIVACY SETTINGS ===== */
+
+.privacy-option {
+  margin: 12px 0;
+}
+
+.privacy-option label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.privacy-option input {
+  margin-top: 3px;
+  accent-color: #fff;
+}
+
+.privacy-option span {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+}
+
+.privacy-option strong {
+  display: block;
+  color: #fff;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.footer-legal-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #777;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.footer-legal-button:hover {
+  color: white;
+}

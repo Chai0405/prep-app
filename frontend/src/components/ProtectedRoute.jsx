@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { apiFetch } from "../utils/api";
 
 export default function ProtectedRoute({ children }) {
 
@@ -11,22 +12,16 @@ export default function ProtectedRoute({ children }) {
 
       try {
 
-        const token = localStorage.getItem("token");
-
-        if (!token) {
+        if (!localStorage.getItem("token")) {
           setAuthenticated(false);
           return;
         }
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const res = await apiFetch("/api/auth/me");
 
         setAuthenticated(res.ok);
 
-      } catch (err) {
+      } catch {
         setAuthenticated(false);
       }
 

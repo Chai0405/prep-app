@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/grocery.css";
+import { apiFetch } from "../utils/api";
 
 export default function Grocery() {
 
-// const [user,setUser] = useState(null);
 const [items,setItems] = useState([]);
 
 const navigate = useNavigate();
@@ -154,31 +154,11 @@ return `/groceries/${key}.jpg`;
 };
 
 
-/* ================= FETCH USER ================= */
-
-// useEffect(()=>{
-
-// fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`,{
-// credentials:"include"
-// })
-// .then(res=>res.json())
-// .then(data=>setUser(data))
-// .catch(()=>setUser(null));
-
-// },[]);
-
-
 /* ================= FETCH GROCERY ================= */
 
 useEffect(()=>{
 
-const token = localStorage.getItem("token");
-
-fetch(`${import.meta.env.VITE_API_URL}/api/grocery`,{
-  headers:{
-    Authorization:`Bearer ${token}`
-  }
-})
+apiFetch("/api/grocery")
 .then(res=>res.json())
 .then(data=>{
 const groceryItems = Array.isArray(data) ? data : data.items || [];
@@ -193,21 +173,16 @@ setItems(groceryItems);
 
 const toggleItem = (index) => {
 
-  const updated = [...items];
-  updated[index].checked = !updated[index].checked;
+  const updated = items.map((item, i) =>
+    i === index ? { ...item, checked: !item.checked } : item
+  );
 
   setItems(updated);
 
-  const token = localStorage.getItem("token");
-
-  fetch(`${import.meta.env.VITE_API_URL}/api/grocery`,{
+  apiFetch("/api/grocery",{
     method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      Authorization:`Bearer ${token}`
-    },
-    body:JSON.stringify({ items:updated })
-  });
+    body:{ items:updated }
+  }).catch(err=>console.error("Grocery update error:",err));
 
 };
 
@@ -280,6 +255,7 @@ className={`grocery-item ${item.checked ? "checked" : ""}`}
 src={getIngredientImage(item.name)}
 alt={item.name}
 className="grocery-item-img"
+onError={e=>{ e.currentTarget.style.visibility="hidden"; }}
 />
 
 <span className="grocery-item-name">

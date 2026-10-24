@@ -2,16 +2,24 @@
 
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 import verifyEmail from "../emails/verifyEmail.js";
 import resetPassword from "../emails/resetPassword.js";
 import resetNewPassword from "../emails/resetNewPassword.js";
 import welcomeEmail from "../emails/welcomeEmail.js";
-import newsletterEmail from "../emails/newsletterEmail.js";
 
 import sendEmail from "../utils/sendEmail.js";
+import { issueSession, clearSession, sessionUser, toSafeUser } from "../utils/session.js";
+
+const MIN_PASSWORD_LENGTH = 10;
+
+const normalizeEmail = (email) =>
+typeof email === "string" ? email.trim().toLowerCase() : "";
+
+// Reset tokens are stored hashed so a leaked database can't be used to reset passwords
+const hashToken = (token) =>
+crypto.createHash("sha256").update(token).digest("hex");
 
 /*
 ================================
@@ -23,7 +31,14 @@ export const registerUser = async (req, res) => {
 
 try {
 
-const { name, email, password } = req.body;
+const { name, password } = req.body;
+const email = normalizeEmail(req.body.email);
+
+if (!name || !email || !password)
+return res.status(400).json({ message: "Name, email and password are required" });
+
+if (password.length < MIN_PASSWORD_LENGTH)
+return res.status(400).json({ message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` });
 
 const existingUser = await User.findOne({ email });
 
@@ -86,11 +101,20 @@ export const loginUser = async (req, res) => {
 
 try {
 
-const { email, password } = req.body;
+const { password } = req.body;
+const email = normalizeEmail(req.body.email);
+
+if (!email || !password)
+return res.status(400).json({ message: "Invalid credentials" });
 
 const user = await User.findOne({ email });
 
 if (!user)
+return res.status(400).json({ message: "Invalid credentials" });
+
+const match = await bcrypt.compare(password, user.password);
+
+if (!match)
 return res.status(400).json({ message: "Invalid credentials" });
 
 if (!user.isVerified)
@@ -98,32 +122,12 @@ return res.status(401).json({
 message: "Please verify your email first"
 });
 
-const match = await bcrypt.compare(password, user.password);
-
-if (!match)
-return res.status(400).json({ message: "Invalid credentials" });
-
-const token = jwt.sign(
-{ id: user._id },
-process.env.JWT_SECRET,
-{ expiresIn: "7d" }
-);
-
-res.cookie("token", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  path: "/",
-});
+const token = issueSession(res, user);
 
 res.json({
 success: true,
 token,
-user: {
-id: user._id,
-name: user.name,
-email: user.email
-}
+user: sessionUser(user)
 });
 
 } catch (err) {
@@ -148,14 +152,12 @@ export const getMe = async (req, res) => {
 
 try {
 
-const user = await User
-.findById(req.user)
-.select("-password");
+const user = await User.findById(req.user);
 
 if (!user)
 return res.status(404).json({ message: "User not found" });
 
-res.json(user);
+res.json(toSafeUser(user));
 
 } catch (err) {
 
@@ -177,13 +179,7 @@ LOGOUT
 
 export const logoutUser = (req, res) => {
 
-res.cookie("token", "", {
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  path: "/",
-  expires: new Date(0),
-});
+clearSession(res);
 
 res.json({ success: true });
 
@@ -201,7 +197,16 @@ export const changePassword = async (req, res) => {
 
 try {
 
+if (!req.body.current || !req.body.newPassword)
+return res.status(400).json({ message: "Current and new password are required" });
+
+if (req.body.newPassword.length < MIN_PASSWORD_LENGTH)
+return res.status(400).json({ message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` });
+
 const user = await User.findById(req.user);
+
+if (!user)
+return res.status(404).json({ message: "User not found" });
 
 const match = await bcrypt.compare(
 req.body.current,
@@ -216,9 +221,14 @@ req.body.newPassword,
 10
 );
 
+// Signs out every other session; this one gets a fresh token
+user.tokenVersion = (user.tokenVersion || 0) + 1;
+
 await user.save();
 
-res.json({ success: true });
+const token = issueSession(res, user);
+
+res.json({ success: true, token });
 
 } catch (err) {
 
@@ -242,16 +252,20 @@ export const forgotPassword = async (req,res)=>{
 
 try{
 
-const {email} = req.body;
+const email = normalizeEmail(req.body.email);
 
-const user = await User.findOne({email});
+const genericResponse = {
+message:"If an account exists for this email, a reset link has been sent"
+};
+
+const user = email ? await User.findOne({email}) : null;
 
 if(!user)
-return res.status(404).json({message:"User not found"});
+return res.json(genericResponse);
 
 const resetToken = crypto.randomBytes(32).toString("hex");
 
-user.resetToken = resetToken;
+user.resetToken = hashToken(resetToken);
 user.resetTokenExpire = Date.now() + 10*60*1000;
 
 await user.save();
@@ -273,9 +287,7 @@ console.error("Reset email failed:", mailError);
 
 }
 
-res.json({
-message:"Reset email sent"
-});
+res.json(genericResponse);
 
 }catch(err){
 
@@ -304,20 +316,26 @@ try{
 const {token} = req.params;
 const {password} = req.body;
 
+if(!password || password.length < MIN_PASSWORD_LENGTH)
+return res.status(400).json({
+message:`Password must be at least ${MIN_PASSWORD_LENGTH} characters`
+});
+
 const user = await User.findOne({
-resetToken:token,
+resetToken:hashToken(token),
 resetTokenExpire:{$gt:Date.now()}
 });
 
 if(!user)
 return res.status(400).json({
-message:"Token expired"
+message:"Reset link is invalid or has expired"
 });
 
 user.password = await bcrypt.hash(password,10);
 
 user.resetToken = undefined;
 user.resetTokenExpire = undefined;
+user.tokenVersion = (user.tokenVersion || 0) + 1;
 
 await user.save();
 
@@ -403,90 +421,6 @@ console.error(err);
 res.status(500).json({
 message:"Verification failed"
 });
-
-}
-
-};
-
-
-
-/*
-================================
-NEWSLETTER EMAIL
-================================
-*/
-
-export const sendNewsletter = async (req,res)=>{
-
-try{
-
-const users = await User.find({ isVerified: true });
-
-for(const user of users){
-
-try {
-
-await sendEmail(
-user.email,
-"What's new in PREP",
-newsletterEmail()
-);
-
-} catch (mailError) {
-
-console.error("Newsletter email failed:", mailError);
-
-}
-
-}
-
-res.json({ message:"Newsletter sent successfully" });
-
-}catch(err){
-
-console.error(err);
-
-res.status(500).json({ message:"Newsletter failed" });
-
-}
-
-};
-
-
-
-/*
-================================
-SUBSCRIBE NEWSLETTER
-================================
-*/
-
-export const subscribeNewsletter = async (req,res)=>{
-
-try{
-
-const { email } = req.body;
-
-try {
-
-await sendEmail(
-email,
-"What's new in PREP",
-newsletterEmail()
-);
-
-} catch (mailError) {
-
-console.error("Newsletter send failed:", mailError);
-
-}
-
-res.json({ message:"Newsletter sent successfully" });
-
-}catch(err){
-
-console.error(err);
-
-res.status(500).json({ message:"Newsletter failed" });
 
 }
 
