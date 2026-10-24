@@ -193,3 +193,24 @@ img {
 .checkout-item img {
   background-color: #161616;
 }
+
+/* ======================================================
+   LEGAL FOOTER ON PHONES
+   Copyright on one line, links wrap neatly below it
+====================================================== */
+
+@media (max-width: 600px) {
+  .footer-bottom .footer-bottom-content {
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  /* .footer-bottom prefix outranks the base rule in dashboard.css */
+  .footer-bottom .footer-legal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+  }
+}
