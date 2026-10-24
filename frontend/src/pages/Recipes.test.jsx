@@ -30,4 +30,14 @@ describe("Recipes page", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(/couldn't be loaded/i);
     expect(screen.getByRole("button", { name: "Try again" })).toBeInTheDocument();
   });
+
+  it("pre-fills the request form when arriving from search", async () => {
+    localStorage.setItem("token", "t");
+    vi.stubGlobal("fetch", vi.fn(async () => new Response("[]")));
+    Element.prototype.scrollIntoView = vi.fn();
+    render(<MemoryRouter initialEntries={["/recipes?request=Chicken%20Biryani"]}><Recipes /></MemoryRouter>);
+
+    expect(await screen.findByLabelText("Recipe name")).toHaveValue("Chicken Biryani");
+    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
+  });
 });

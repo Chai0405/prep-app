@@ -1,8 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ShoppingCart  } from "lucide-react";
+import { ShoppingCart, Search } from "lucide-react";
 import CartSidebar from "../components/CartSidebar";
+import SearchPanel from "./SearchPanel";
 import { apiFetch } from "../utils/api";
 import { USER_UPDATED } from "../utils/userEvents";
 
@@ -14,6 +15,19 @@ export default function Navbar() {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [menuOpen,setMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Ctrl+K / Cmd+K opens search from anywhere
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   const cartCount = useSelector((state) => state.cart.cartItems.length);
 
   useEffect(() => {
@@ -93,6 +107,16 @@ export default function Navbar() {
           >
             ☰
           </div>
+
+          <button
+            type="button"
+            className="nav-search-btn"
+            onClick={() => setIsSearchOpen(true)}
+            aria-label="Search"
+            title="Search (Ctrl+K)"
+          >
+            <Search size={19} />
+          </button>
 
           <div
   className="cart-icon-wrapper"
@@ -193,6 +217,8 @@ export default function Navbar() {
         </div>
 
       )}
+
+      {isSearchOpen && <SearchPanel onClose={() => setIsSearchOpen(false)} />}
 
       {
   isCartOpen && (

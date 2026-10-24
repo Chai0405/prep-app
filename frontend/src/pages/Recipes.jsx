@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/recipes.css";
 import { apiFetch } from "../utils/api";
 import LoadingState from "../components/LoadingState";
@@ -12,6 +12,8 @@ const navigate = useNavigate();
 
 const [recipes,setRecipes] = useState([]);
 const [status,setStatus] = useState("loading"); // loading | ready | error
+const requestRef = useRef(null);
+const requestedName = new URLSearchParams(location.search).get("request") || "";
 
 
 /* ================= FETCH RECIPES ================= */
@@ -33,6 +35,15 @@ setStatus("error");
 });
 
 },[]);
+
+
+/* ================= FROM SEARCH: "Request this recipe" ================= */
+
+useEffect(()=>{
+if(status === "ready" && requestedName){
+requestRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+},[status, requestedName]);
 
 
 /* ================= URL FILTER ================= */
@@ -150,7 +161,11 @@ onClick={()=>navigate(`/recipes/${recipe._id}`)}
 
 {/* REQUEST A RECIPE */}
 
-{status === "ready" && <RecipeRequestForm />}
+{status === "ready" && (
+<div ref={requestRef}>
+<RecipeRequestForm key={requestedName} initialName={requestedName} />
+</div>
+)}
 
 </div>
 

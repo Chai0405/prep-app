@@ -4,8 +4,8 @@ import { apiFetch } from "../utils/api";
 import "../styles/recipeRequest.css";
 
 // "Can't find a recipe?" — logged-in users ask for one; the owner gets an email
-export default function RecipeRequestForm() {
-  const [name, setName] = useState("");
+export default function RecipeRequestForm({ initialName = "" }) {
+  const [name, setName] = useState(initialName.slice(0, 100));
   const [details, setDetails] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const [message, setMessage] = useState("");
