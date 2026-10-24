@@ -1249,7 +1249,7 @@ const recipes = [
   title: "Paneer Tikka",
   description:
     "Smoky, spiced paneer and vegetables marinated in yogurt and grilled until charred at the edges. A crowd-pleasing vegetarian starter.",
-  image: "/recipes/paneer-tikka.webp",
+  image: "/recipes/paneer-tikka-skewers.webp",
   cuisine: "Indian",
   mealType: "Snacks",
   calories: 320,
