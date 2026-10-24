@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../utils/api";
+import LoadingState from "../components/LoadingState";
 
 export default function VerifyEmail() {
 
@@ -40,7 +41,7 @@ export default function VerifyEmail() {
     <div style={{ padding: "100px", textAlign: "center" }}>
       
       {status === "loading" && (
-        <h2>Verifying your email...</h2>
+        <LoadingState label="Verifying your email..." />
       )}
 
       {status === "success" && (

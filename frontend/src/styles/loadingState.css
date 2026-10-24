@@ -69,3 +69,14 @@
     50%      { opacity: 0.45; }
   }
 }
+
+/* small version, e.g. inside the search panel */
+.loading-state-box.is-compact {
+  min-height: 0;
+  padding: 24px 12px;
+  gap: 12px;
+}
+
+.loading-state-box.is-compact .loading-logo {
+  width: 52px;
+}

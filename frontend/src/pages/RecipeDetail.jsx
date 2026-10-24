@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import AddToPlannerModal from "../components/AddToPlannerModal";
 import "../styles/recipeDetail.css"
 import { apiFetch } from "../utils/api";
+import LoadingState from "../components/LoadingState";
 
 export default function RecipeDetail() {
 
@@ -35,7 +36,7 @@ return <div className="loading-state">Recipe not found.</div>;
 }
 
 if(!recipe){
-return <div className="loading-state">Loading recipe...</div>;
+return <LoadingState label="Loading recipe..." />;
 }
 
 return(

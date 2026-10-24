@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import { addToCart } from "../redux/features/cart/cartSlice";
 import { loadRecipes, searchAll } from "../utils/search";
 import "../styles/search.css";
+import LoadingState from "./LoadingState";
 
 // Full-screen (phone) / dropdown-style (desktop) search over recipes, products and blogs
 export default function SearchPanel({ onClose }) {
@@ -107,7 +108,7 @@ export default function SearchPanel({ onClose }) {
           )}
 
           {hasQuery && recipesState === "loading" && results.recipes.length === 0 && (
-            <p className="search-note">Loading recipes...</p>
+            <LoadingState label="Loading recipes..." compact />
           )}
 
           {hasQuery && recipesState === "error" && (
