@@ -2,16 +2,26 @@ const mailTemplate = (title, message, buttonText, buttonLink) => {
 return `
 
 <!DOCTYPE html>
-<html>
+<html style="background:#000000">
 
-<body style="background:#000000;margin:0;padding:40px;font-family:Inter,Arial">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- tell mail apps this email is designed dark, so they don't invert it -->
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+</head>
 
-<table width="100%" cellpadding="0" cellspacing="0">
+<body bgcolor="#000000" style="background:#000000;margin:0;padding:0;font-family:Inter,Arial">
+
+<!-- Gmail drops <body> styles, so the black background lives on this table -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000"
+style="background:#000000;background-color:#000000;width:100%">
 <tr>
-<td align="center">
+<td align="center" bgcolor="#000000" style="background:#000000;padding:40px 16px">
 
-<table width="520" cellpadding="0" cellspacing="0"
-style="background:#0b0b0b;border-radius:8px;padding:40px;border:1px solid #1f1f1f">
+<table width="520" cellpadding="0" cellspacing="0" border="0" bgcolor="#0b0b0b"
+style="background:#0b0b0b;background-color:#0b0b0b;border-radius:8px;padding:40px;border:1px solid #1f1f1f;max-width:100%">
 
 <tr>
 <td align="center">
