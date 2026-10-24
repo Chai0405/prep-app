@@ -68,7 +68,7 @@ export default function About() {
           <p className="reveal-item about-quote" style={{ "--reveal-order": 6 }}>Small systems create lasting habits.</p>
 
           <div ref={signRef} className={`about-signoff ${signVisible ? "is-signing" : ""}`}>
-            <img src="/about/signature.webp" alt="" className="about-signature" />
+            <img src="/about/signature.svg" alt="" className="about-signature" />
             <p className="about-name">Chaithra Hegde</p>
             <p className="about-role">Founder &amp; Developer</p>
           </div>
