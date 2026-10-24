@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import WeekOverview from "./WeekOverview";
 import Planner from "../pages/Planner";
+import { saveWeekImage } from "../utils/weekImage";
+
+vi.mock("../utils/weekImage", () => ({ saveWeekImage: vi.fn(async () => {}) }));
 
 const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const MEALS = ["Breakfast","Lunch","Dinner","Snacks"];
@@ -35,6 +38,22 @@ describe("WeekOverview", () => {
     expect(onOpen).toHaveBeenCalledWith("Friday", "Snacks");
 
     expect(screen.getByRole("link", { name: "View grocery list" })).toHaveAttribute("href", "/grocery");
+  });
+
+  it("saves the week as an image", async () => {
+    render(<MemoryRouter><WeekOverview planner={planner} days={DAYS} meals={MEALS} onOpen={() => {}} /></MemoryRouter>);
+    await userEvent.setup().click(screen.getByRole("button", { name: "Save as image" }));
+    expect(saveWeekImage).toHaveBeenCalledWith({
+      planner, days: DAYS, meals: MEALS,
+      summary: "3 of 28 meals planned · 4 recipes · 25 slots still open",
+    });
+  });
+
+  it("tells the user when saving fails", async () => {
+    saveWeekImage.mockRejectedValueOnce(new Error("no canvas"));
+    render(<MemoryRouter><WeekOverview planner={planner} days={DAYS} meals={MEALS} onOpen={() => {}} /></MemoryRouter>);
+    await userEvent.setup().click(screen.getByRole("button", { name: "Save as image" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Couldn't save the image");
   });
 
   it("celebrates a full week", () => {

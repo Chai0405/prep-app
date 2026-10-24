@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { saveWeekImage } from "../utils/weekImage";
 
 // The whole week at a glance: what's planned in each day/meal slot.
 // Tapping a slot opens that day and meal in the planner.
@@ -9,6 +11,28 @@ export default function WeekOverview({ planner, days, meals, onOpen }) {
   const filled = slots.filter((recipes) => recipes.length > 0).length;
   const totalRecipes = slots.reduce((sum, recipes) => sum + recipes.length, 0);
   const open = slots.length - filled;
+  const openText = open === 0 ? "every slot is filled 🎉" : `${open} slot${open === 1 ? "" : "s"} still open`;
+
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  const handleSave = async () => {
+    setSaving(true);
+    setSaveError("");
+    try {
+      const recipesText = totalRecipes > filled ? ` · ${totalRecipes} recipes` : "";
+      await saveWeekImage({
+        planner,
+        days,
+        meals,
+        summary: `${filled} of ${slots.length} meals planned${recipesText} · ${openText}`,
+      });
+    } catch {
+      setSaveError("Couldn't save the image. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <div className="week-overview">
@@ -17,7 +41,7 @@ export default function WeekOverview({ planner, days, meals, onOpen }) {
         <strong>{filled} of {slots.length}</strong> meals planned
         {totalRecipes > filled && <> · {totalRecipes} recipes</>}
         {" · "}
-        {open === 0 ? "every slot is filled 🎉" : `${open} slot${open === 1 ? "" : "s"} still open`}
+        {openText}
       </p>
 
       <div className="week-overview-grid" role="table" aria-label="Meals planned this week">
@@ -62,7 +86,11 @@ export default function WeekOverview({ planner, days, meals, onOpen }) {
         <Link to="/grocery" className="planner-btn week-overview-grocery">
           View grocery list
         </Link>
+        <button type="button" className="planner-btn week-overview-save" onClick={handleSave} disabled={saving}>
+          {saving ? "Saving…" : "Save as image"}
+        </button>
       </div>
+      {saveError && <p className="week-overview-error" role="alert">{saveError}</p>}
 
     </div>
   );

@@ -732,3 +732,26 @@
     margin-bottom: 2px;
   }
 }
+
+.week-overview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.week-overview-actions .planner-btn {
+  margin-top: 0;
+}
+
+.week-overview-save:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.week-overview-error {
+  margin-top: 12px;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 13px;
+  color: #ff8a80;
+}
