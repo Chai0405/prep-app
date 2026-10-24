@@ -19,35 +19,11 @@
   transform: none;
 }
 
-/* =========================
-   BENEFITS HOVER
-   The whole item reacts, not just the small icon circle
-========================= */
-
-.benefit-item .benefit-icon {
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.benefit-item:hover .benefit-icon {
-  transform: translateY(-6px);
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.08);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal-group .reveal-item {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .benefit-item:hover .benefit-icon {
-    transform: none;
   }
 }
 
