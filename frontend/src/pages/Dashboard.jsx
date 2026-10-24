@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import HeroSlider from "../components/HeroSlider";
+import BenefitCard from "../components/BenefitCard";
+import benefits from "../data/benefits";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 import "../styles/reveal.css";
 import "../styles/benefits.css";
 import { useInView } from "../utils/useInView";
 import { apiFetch } from "../utils/api";
-
-const BENEFITS = [
-  { icon: "calendar_today", title: "Organized Planning", text: "Easily schedule your meals for the week." },
-  { icon: "fitness_center", title: "Healthy Choices", text: "Choose nutritious recipes to stay on track." },
-  { icon: "repeat", title: "Stay Consistent", text: "Build a routine with consistent meal prep." },
-  { icon: "assignment", title: "Smart Organization", text: "Keep recipes, ingredients and groceries organised." },
-];
 
 export default function Dashboard() {
 
@@ -141,25 +136,13 @@ export default function Dashboard() {
 
         <div className="benefits-container benefit-cards">
 
-          {BENEFITS.map((benefit, index) => (
+          {benefits.map((benefit, index) => (
             <div
               key={benefit.title}
               className="benefit-item reveal-item"
               style={{ "--reveal-order": index + 1 }}
             >
-              <div className="benefit-card">
-                <span className="benefit-icon-wrap">
-                  {/* ring that draws itself when the section appears */}
-                  <svg className="benefit-ring" viewBox="0 0 72 72" aria-hidden="true">
-                    <circle cx="36" cy="36" r="34.5" pathLength="100" />
-                  </svg>
-                  <span className="material-icons benefit-icon" aria-hidden="true">
-                    {benefit.icon}
-                  </span>
-                </span>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.text}</p>
-              </div>
+              <BenefitCard benefit={benefit} />
             </div>
           ))}
 
