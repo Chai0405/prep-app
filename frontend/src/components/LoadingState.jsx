@@ -5,7 +5,8 @@ import "../styles/loadingState.css";
 // after that takes 30-60 s, so explain the wait instead of showing nothing.
 const SLOW_AFTER_MS = 4000;
 
-export default function LoadingState({ label = "Loading..." }) {
+// The PREP logo turning in the middle; `fullScreen` centres it on the whole page
+export default function LoadingState({ label = "Loading...", fullScreen = false }) {
   const [slow, setSlow] = useState(false);
 
   useEffect(() => {
@@ -14,9 +15,18 @@ export default function LoadingState({ label = "Loading..." }) {
   }, []);
 
   return (
-    <div className="loading-state-box" role="status" aria-live="polite">
-      <span className="loading-spinner" aria-hidden="true" />
-      <p>{label}</p>
+    <div
+      className={`loading-state-box ${fullScreen ? "is-full-screen" : ""}`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="loading-logo-stage" aria-hidden="true">
+        <img src="/logo.png" alt="" className="loading-logo" />
+      </div>
+
+      {/* read out by screen readers, not shown */}
+      <span className="visually-hidden">{label}</span>
+
       {slow && (
         <p className="loading-slow">
           Waking up the server — this can take up to a minute on the first visit.

@@ -33,7 +33,7 @@ export default function ProtectedRoute({ children }) {
   }, []);
 
   if (authenticated === null) {
-    return <LoadingState />;
+    return <LoadingState fullScreen />;
   }
 
   return authenticated ? children : <Navigate to="/auth" replace />;
