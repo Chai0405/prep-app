@@ -71,9 +71,21 @@ export default function WeekOverview({ planner, days, meals, onOpen }) {
                   aria-label={`${day} ${meal}: ${first ? recipes.map((r) => r.title).join(", ") : "nothing planned"}`}
                 >
                   <span className="week-overview-meal-label" aria-hidden="true">{meal}</span>
-                  <span className="week-overview-slot-text">
-                    {first ? first.title : "—"}
-                    {recipes.length > 1 && <em> +{recipes.length - 1}</em>}
+                  <span className="week-overview-slot-body">
+                    {first?.image && (
+                      <img
+                        className="week-overview-thumb"
+                        src={first.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      />
+                    )}
+                    <span className="week-overview-slot-text">
+                      {first ? first.title : "—"}
+                      {recipes.length > 1 && <em> +{recipes.length - 1}</em>}
+                    </span>
                   </span>
                 </button>
               );

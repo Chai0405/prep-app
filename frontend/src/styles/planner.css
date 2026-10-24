@@ -690,6 +690,22 @@
   overflow: hidden;
 }
 
+.week-overview-slot-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.week-overview-thumb {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
 /* meal name inside each slot is only needed on phones (no column headers) */
 .week-overview-meal-label {
   display: none;

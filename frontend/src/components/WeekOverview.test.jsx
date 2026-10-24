@@ -32,7 +32,10 @@ describe("WeekOverview", () => {
     const monBreakfast = screen.getByRole("cell", { name: "Monday Breakfast: Avocado Toast, Veg Poha" });
     expect(monBreakfast).toHaveTextContent("Avocado Toast +1");
     expect(monBreakfast).toHaveClass("is-filled");
-    expect(screen.getByRole("cell", { name: "Sunday Lunch: nothing planned" })).not.toHaveClass("is-filled");
+    expect(monBreakfast.querySelector("img")).toHaveAttribute("src", "/a.webp");
+    const sundayLunch = screen.getByRole("cell", { name: "Sunday Lunch: nothing planned" });
+    expect(sundayLunch).not.toHaveClass("is-filled");
+    expect(sundayLunch.querySelector("img")).toBeNull();
 
     await userEvent.setup().click(screen.getByRole("cell", { name: /Friday Snacks/ }));
     expect(onOpen).toHaveBeenCalledWith("Friday", "Snacks");
