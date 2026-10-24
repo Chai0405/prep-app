@@ -1,0 +1,65 @@
+/* =========================
+   DASHBOARD HERO SLIDER
+   Layout, tint and text styles come from .dashboard-hero / .hero-overlay
+   in dashboard.css; this file only adds the slides and the fade.
+========================= */
+
+.hero-slider {
+  overflow: hidden;
+}
+
+/* background photos, stacked; only the active one is visible */
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.hero-slide-bg.is-active {
+  opacity: 1;
+}
+
+/* dark tint from dashboard.css sits above the photos */
+.hero-slider::before {
+  z-index: 1;
+}
+
+/* all slide texts share one grid cell, so the banner keeps a steady
+   height while they cross-fade */
+.hero-slide-stack {
+  z-index: 2;
+  display: grid;
+  /* minmax(0, 1fr) lets long titles wrap instead of widening the banner */
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .hero-slide-stack h1 {
+    font-size: 30px;
+  }
+}
+
+.hero-slide-content {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.hero-slide-content.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-bg,
+  .hero-slide-content {
+    transition: none;
+  }
+}

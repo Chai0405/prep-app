@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
+import HeroSlider from "../components/HeroSlider";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 import { apiFetch } from "../utils/api";
@@ -22,21 +23,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
 
       {/* ================= HERO ================= */}
-      <div className="dashboard-hero">
-        <div className="hero-overlay">
-          <h1>Plan. Prep. Repeat.!</h1>
-          <p>
-            Structured meals, smarter groceries, and food systems that fit your life.
-          </p>
-
-          <button
-            className="hero-btn"
-            onClick={() => navigate("/planner")}
-          >
-            Open Planner
-          </button>
-        </div>
-      </div>
+      <HeroSlider />
 
 
       {/* ================= LIFESTYLE ================= */}
