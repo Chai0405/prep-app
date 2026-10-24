@@ -1,20 +1,189 @@
 /* =========================
    ABOUT PAGE
+   Desktop: story on the left, photo on the right (as in the original design)
+   Phones:  heading, photo, story, sign-off — stacked
 ========================= */
 
-.about-page{
-  padding-top:70px;
-  min-height:100vh;
+.about-page {
+  padding-top: 70px;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
 }
 
-/* ABOUT DESIGN IMAGE */
-
-.about-design{
-  width:100%;
+.about-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-areas:
+    "heading photo"
+    "text    photo";
+  column-gap: 72px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
 }
 
-.about-design img{
-  width:100%;
-  height:auto;
-  display:block;
+/* ---------- heading ---------- */
+
+.about-heading {
+  grid-area: heading;
+  justify-self: end;
+  margin-bottom: 40px;
+}
+
+.about-kicker {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 8px;
+}
+
+.about-title-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-heading h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.about-logo {
+  width: 96px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* ---------- photo ---------- */
+
+.about-photo {
+  grid-area: photo;
+  align-self: start;
+  margin: 0;
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 5;         /* narrower crop, as in the design */
+  object-fit: cover;
+  object-position: 68% center; /* subject centred, bottle on the left cropped out */
+  filter: brightness(0.82);    /* the design shows the photo slightly dimmed */
+  background-color: #161616;
+}
+
+/* ---------- story ---------- */
+
+.about-text {
+  grid-area: text;
+  max-width: 640px;
+}
+
+.about-text h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #9c9c9c;
+  margin-bottom: 18px;
+}
+
+.about-text .about-quote {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* ---------- sign-off ---------- */
+
+.about-signoff {
+  margin-top: 28px;
+  width: max-content;
+  text-align: center;
+}
+
+.about-signature {
+  display: block;
+  width: 154px;
+  height: auto;
+  margin: 0 auto -6px;
+}
+
+.about-text .about-name {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.about-text .about-role {
+  font-size: 13px;
+  color: #8a8a8a;
+  margin: 0;
+}
+
+/* ---------- tablets & phones ---------- */
+
+@media (max-width: 900px) {
+  .about-story {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "heading"
+      "photo"
+      "text";
+    padding: 24px 16px 60px;
+  }
+
+  .about-heading {
+    justify-self: start;
+    margin-bottom: 24px;
+  }
+
+  .about-heading h1 {
+    font-size: 32px;
+  }
+
+  .about-logo {
+    width: 72px;
+  }
+
+  .about-photo {
+    margin-bottom: 32px;
+  }
+
+  .about-photo img {
+    max-height: 520px;
+    border-radius: 4px;
+  }
+
+  .about-text {
+    max-width: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-title-row {
+    gap: 14px;
+  }
+
+  .about-heading h1 {
+    font-size: 28px;
+  }
 }
