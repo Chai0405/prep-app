@@ -172,3 +172,24 @@ img {
 .footer-legal-button:hover {
   color: white;
 }
+
+/* ======================================================
+   IMAGE PLACEHOLDERS
+   Photo cards show a dark box while their picture downloads,
+   instead of an empty gap (not used for transparent cut-outs).
+====================================================== */
+
+.product-card img,
+.recipe-card-medium img,
+.explore-card img,
+.pantry-card img,
+.featured-image img,
+.blog-image img,
+.planner-card-image img,
+.modal-recipe-card img,
+.blog-main-image,
+.sidebar-post img,
+.cart-item img,
+.checkout-item img {
+  background-color: #161616;
+}

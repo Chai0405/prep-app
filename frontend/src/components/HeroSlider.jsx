@@ -9,7 +9,9 @@ const prefersReducedMotion = () =>
 export default function HeroSlider() {
 
   const navigate = useNavigate();
-  const [active, setActive] = useState(0);
+  // `reached` is the furthest slide shown so far; photos load one step ahead
+  // of it, so the first view downloads two photos instead of all of them
+  const [{ active, reached }, setSlide] = useState({ active: 0, reached: 0 });
 
   useEffect(() => {
     // Visitors who asked their device for less motion get a still banner
@@ -18,7 +20,10 @@ export default function HeroSlider() {
     const timer = setInterval(() => {
       // Don't advance in a background tab
       if (!document.hidden) {
-        setActive((current) => (current + 1) % SLIDES.length);
+        setSlide(({ active: current, reached: furthest }) => {
+          const next = (current + 1) % SLIDES.length;
+          return { active: next, reached: Math.max(furthest, next) };
+        });
       }
     }, SLIDE_DURATION);
 
@@ -32,7 +37,7 @@ export default function HeroSlider() {
         <div
           key={slide.image}
           className={`hero-slide-bg ${index === active ? "is-active" : ""}`}
-          style={{ backgroundImage: `url("${slide.image}")` }}
+          style={index <= reached + 1 ? { backgroundImage: `url("${slide.image}")` } : undefined}
           aria-hidden="true"
         />
       ))}

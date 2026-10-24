@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../utils/api";
+import LoadingState from "./LoadingState";
 
 export default function ProtectedRoute({ children }) {
 
@@ -32,7 +33,7 @@ export default function ProtectedRoute({ children }) {
   }, []);
 
   if (authenticated === null) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return authenticated ? children : <Navigate to="/auth" replace />;

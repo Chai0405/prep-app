@@ -53,6 +53,18 @@ describe("HeroSlider", () => {
     expect(active[0].style.backgroundImage).toContain(SLIDES[1].image);
   });
 
+  it("downloads photos one slide ahead instead of all at once", () => {
+    const { container } = renderSlider();
+    const withPhoto = () =>
+      [...container.querySelectorAll(".hero-slide-bg")].filter((el) => el.style.backgroundImage).length;
+
+    expect(withPhoto()).toBe(2); // current + next
+    advance();
+    expect(withPhoto()).toBe(3);
+    advance(SLIDE_DURATION * SLIDES.length);
+    expect(withPhoto()).toBe(SLIDES.length); // all loaded after a full loop, none dropped
+  });
+
   it("only the visible slide's button can be used, and it opens its page", () => {
     renderSlider();
     advance(); // slide 2

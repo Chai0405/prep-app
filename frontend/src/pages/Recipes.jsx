@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/recipes.css";
 import { apiFetch } from "../utils/api";
+import LoadingState from "../components/LoadingState";
 
 export default function Recipes() {
 
@@ -9,6 +10,7 @@ const location = useLocation();
 const navigate = useNavigate();
 
 const [recipes,setRecipes] = useState([]);
+const [status,setStatus] = useState("loading"); // loading | ready | error
 
 
 /* ================= FETCH RECIPES ================= */
@@ -16,9 +18,18 @@ const [recipes,setRecipes] = useState([]);
 useEffect(()=>{
 
 apiFetch("/api/recipes")
-.then(res=>res.json())
-.then(data=>setRecipes(data))
-.catch(err=>console.error(err));
+.then(res=>{
+if(!res.ok) throw new Error(`Recipes request failed (${res.status})`);
+return res.json();
+})
+.then(data=>{
+setRecipes(Array.isArray(data) ? data : []);
+setStatus("ready");
+})
+.catch(err=>{
+console.error(err);
+setStatus("error");
+});
 
 },[]);
 
@@ -92,6 +103,15 @@ onClick={()=>navigate(`/recipes?type=${meal.toLowerCase()}`)}
 
 
 {/* GRID */}
+
+{status === "loading" && <LoadingState label="Loading recipes..." />}
+
+{status === "error" && (
+<div className="loading-state-box" role="alert">
+<p>Recipes couldn't be loaded. Please check your connection and try again.</p>
+<button className="active-filter" onClick={()=>window.location.reload()}>Try again</button>
+</div>
+)}
 
 <section className="recipes-grid-medium">
 
