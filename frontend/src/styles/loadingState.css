@@ -1,5 +1,7 @@
 .loading-state-box {
-  min-height: 40vh;
+  /* at least a full screen tall, so the footer stays out of view while loading */
+  min-height: 100vh;
+  min-height: 100dvh;
   padding: 60px 16px;
   display: flex;
   flex-direction: column;
@@ -68,6 +70,12 @@
     0%, 100% { opacity: 1; }
     50%      { opacity: 0.45; }
   }
+}
+
+/* under a page banner: logo near the top, where it's visible */
+.loading-state-box.is-top {
+  justify-content: flex-start;
+  padding-top: 56px;
 }
 
 /* small version, e.g. inside the search panel */

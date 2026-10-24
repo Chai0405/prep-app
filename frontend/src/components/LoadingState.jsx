@@ -6,8 +6,9 @@ import "../styles/loadingState.css";
 const SLOW_AFTER_MS = 4000;
 
 // The PREP logo turning in the middle; `fullScreen` centres it on the whole
-// page, `compact` is a small version for inside panels
-export default function LoadingState({ label = "Loading...", fullScreen = false, compact = false }) {
+// page, `top` puts it near the top (below a banner), `compact` is a small
+// version for inside panels
+export default function LoadingState({ label = "Loading...", fullScreen = false, compact = false, top = false }) {
   const [slow, setSlow] = useState(false);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function LoadingState({ label = "Loading...", fullScreen = false,
 
   return (
     <div
-      className={`loading-state-box ${fullScreen ? "is-full-screen" : ""} ${compact ? "is-compact" : ""}`}
+      className={`loading-state-box ${fullScreen ? "is-full-screen" : ""} ${compact ? "is-compact" : ""} ${top ? "is-top" : ""}`}
       role="status"
       aria-live="polite"
     >

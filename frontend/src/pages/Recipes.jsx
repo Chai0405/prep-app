@@ -116,7 +116,7 @@ onClick={()=>navigate(`/recipes?type=${meal.toLowerCase()}`)}
 
 {/* GRID */}
 
-{status === "loading" && <LoadingState label="Loading recipes..." />}
+{status === "loading" && <LoadingState label="Loading recipes..." top />}
 
 {status === "error" && (
 <div className="loading-state-box" role="alert">
