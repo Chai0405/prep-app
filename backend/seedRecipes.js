@@ -1246,6 +1246,42 @@ const recipes = [
   tags: ["Indian", "Vegetarian", "Comfort Food"]
 },
 {
+  title: "Paneer Tikka",
+  description:
+    "Smoky, spiced paneer and vegetables marinated in yogurt and grilled until charred at the edges. A crowd-pleasing vegetarian starter.",
+  image: "/recipes/paneer-tikka.webp",
+  cuisine: "Indian",
+  mealType: "Snacks",
+  calories: 320,
+  time: "50 min",
+  difficulty: "Medium",
+  ingredients: [
+    "250g paneer cubes",
+    "1/2 cup yogurt",
+    "Bell peppers, cubed",
+    "1 onion, diced",
+    "1 tbsp ginger-garlic paste",
+    "1 tsp chili powder",
+    "1/2 tsp turmeric",
+    "1 tsp cumin powder",
+    "1 tsp coriander powder",
+    "1 tsp garam masala",
+    "1 tbsp lemon juice",
+    "1 tbsp vegetable oil",
+    "Salt to taste",
+    "Fresh coriander leaves"
+  ],
+  instructions: [
+    "Whisk yogurt with ginger-garlic paste, all the spices, lemon juice, oil and salt into a thick marinade.",
+    "Add paneer, bell peppers and onion, and coat everything well.",
+    "Cover and marinate for at least 30 minutes.",
+    "Thread paneer and vegetables onto skewers, alternating them.",
+    "Grill, air-fry or bake at 220°C for 12–15 minutes, turning once, until charred at the edges.",
+    "Garnish with coriander leaves and serve hot with a squeeze of lemon."
+  ],
+  tags: ["Indian", "Vegetarian", "High Protein"]
+},
+{
   title: "Pho",
   description:
     "Vietnamese noodle soup with aromatic broth, tender meat, and fresh herbs. Light yet deeply flavorful.",
